@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
+    <link rel="stylesheet" href="~/Content/Master/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/Master/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/Master/css/themify-icons.css">
+    <link rel="stylesheet" href="~/Content/Master/css/metisMenu.css">
+    <link rel="stylesheet" href="~/Content/Master/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/Master/css/slicknav.min.css">
+   
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+   
+    <link rel="stylesheet" href="~/Content/Master/css/typography.css">
+    <link rel="stylesheet" href="~/Content/Master/css/default-css.css">
+    <link rel="stylesheet" href="~/Content/Master/css/styles.css">
+    <link rel="stylesheet" href="~/Content/Master/css/responsive.css">
+
+    <script src="~/Content/Master/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+
+    <div class="page-container">
+
+        <!-- sidebar menu area start -->
+        <div class="sidebar-menu">
+
+            <div class="sidebar-header">
+                <div class="logo">
+                    <a href="index.html"><img src="~/Content/online-shop-logo-template_59362-86.jpg" alt="logo"></a>
+                </div>
+            </div>
+
+            <div class="main-menu">
+                <div class="menu-inner">
+                    <nav>
+                        <ul class="metismenu" id="menu">
+
+                            <li class="">
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="ti-layout-sidebar-left"></i>
+                                    <span>
+                                        <b>Insert Forms</b>
+                                    </span>
+                                </a>
+                                <ul class="collapse">
+                                    <li><a href="@Url.Action("Products","Products")"><b>Products</b></a></li>
+                                    <li><a href="@Url.Action("Brands","Products")"><b>Brands</b></a></li>
+                                    <li><a href="@Url.Action("Supplier","Products")"><b>Suppliers</b></a></li>
+                                    <li><a href="@Url.Action("Category","Products")"><b>Categories</b></a></li>
+
+
+                                </ul>
+
+                            </li>
+                            <li>
+                                <a href="" aria-expanded="true">
+                                    <i class="ti-layout-sidebar-left"></i>
+                                    <span>
+                                        <b>simple</b>
+                                    </span>
+                                </a>
+
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="ti-pie-chart"></i>
+                                    <span></span>
+                                </a>
+
+
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-palette"></i><span>UI Features</span></a>
+
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-slice"></i><span>icons</span></a>
+
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-table"></i>
+                                    <span>Tables</span>
+                                </a>
+
+                            </li>
+                            <li><a href=""><i class="ti-map-alt"></i> <span>maps</span></a></li>
+                            <li><a href=""><i class="ti-receipt"></i> <span>Invoice Summary</span></a></li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layers-alt"></i> <span>Pages</span></a>
+
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-exclamation-triangle"></i>
+                                    <span>Error</span>
+                                </a>
+
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-align-left"></i> <span>
+                                        Multi
+                                        level menu
+                                    </span>
+                                </a>
+
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+
+            <div class="header-area">
+                <div class="row align-items-center">
+
+                    <div class="col-md-6 col-sm-8 clearfix">
+                        <div class="nav-btn pull-left">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+            @RenderBody()
+
+        </div>
+
+
+    </div>
+
+
+
+    <footer>
+        <div class="footer-area">
+            <p>© Copyright 2019. All right reserved. Template by <a href="#">Abdelrahman ALi</a>.</p>
+        </div>
+    </footer>
+
+
+
+
+
+
+
+    <script src="~/Content/Master/js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="~/Content/Master/js/popper.min.js"></script>
+    <script src="~/Content/Master/js/bootstrap.min.js"></script>
+    <script src="~/Content/Master/js/owl.carousel.min.js"></script>
+    <script src="~/Content/Master/js/metisMenu.min.js"></script>
+
+    <script src="~/Content/Master/js/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/Master/js/jquery.slicknav.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script>
+        zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
+        ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
+    </script>
+
+    <script src="~/Content/Master/js/line-chart.js"></script>
+
+    <script src="~/Content/Master/js/bar-chart.js"></script>
+
+    <script src="~/Content/Master/js/pie-chart.js"></script>
+
+    <script src="~/Content/Master/js/plugins.js"></script>
+    <script src="~/Content/Master/js/scripts.js"></script>
+</body>
+</html>
