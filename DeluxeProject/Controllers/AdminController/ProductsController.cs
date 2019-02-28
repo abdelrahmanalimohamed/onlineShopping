@@ -8,7 +8,7 @@ namespace DeluxeProject.Controllers
 {
     public class ProductsController : Controller
     {
-        // GET: Products
+        
         public ActionResult Products()
         {
             return View();
