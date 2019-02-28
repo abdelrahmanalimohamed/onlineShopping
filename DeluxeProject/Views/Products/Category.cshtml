@@ -11,13 +11,60 @@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Category Name</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" placeholder="Category Name" />
+            <input type="text" class="form-control" placeholder="Category Name" id="catgname"/>
         </div>
     </div>
 
     <div class="h-100 row align-items-center">
         <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Save</button>
+            
+            <input type="button" class="btn btn-primary" id="btnsave" value="Save"/>
         </div>
     </div>
 </form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnsave").click(function () {
+           
+
+            var name = $('#catgname').val();
+            var finaldata = { "name": name }
+       
+
+            $.ajax({
+                url:'@Url.Action("InsertCategory","Insertion","Admin")',
+                type: "POST",
+                data: JSON.stringify(finaldata),
+                dataType: "json",
+                contentType: "application/json",
+                success: function (response) {
+                    alert(response);
+                    $('#catgname').val('');
+                  
+                },
+                error: function (e) {
+                    alert("an error has occured", e);
+                }
+
+
+
+            });
+
+
+
+
+        });
+
+
+
+
+    });
+</script>

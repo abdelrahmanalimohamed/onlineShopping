@@ -14,6 +14,7 @@ namespace DeluxeProject.Controllers
             return View();
         }
 
+       
 
         public ActionResult Brands()
         {

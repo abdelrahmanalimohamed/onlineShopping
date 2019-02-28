@@ -8,17 +8,94 @@
 <form>
 
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Supplier Name</label>
+        <label class="col-sm-2 col-form-label">Company Name</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" placeholder="Supplier Name" />
+            <input type="text" class="form-control" placeholder="Company Name" id="compname" />
         </div>
     </div>
 
 
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Company phone</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="Company Phone"  id="comphone"/>
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Company Mail</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" placeholder="Company mail" id="compmail" />
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Company Address</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="Company Address" id="comlocation"/>
+        </div>
+    </div>
 
     <div class="h-100 row align-items-center">
         <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Save</button>
+            
+            <input type="button" class="btn btn-primary" value="Save" id="btnsave" />
         </div>
     </div>
 </form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnsave").click(function () {
+
+
+            var name = $('#compname').val();
+            var companycontact = $('#comphone').val();
+            var companymail = $('#compmail').val();
+            var companylocation = $('#comlocation').val();
+
+            var finaldata = { "company_name": name, "company_contact": companycontact, "company_mail": companymail, "company_location": companylocation }
+
+
+            $.ajax({
+                url:'@Url.Action("InsertSupplier", "Insertion","Admin")',
+                type: "POST",
+                data: JSON.stringify(finaldata),
+                dataType: "json",
+                contentType: "application/json",
+                success: function (response) {
+                    alert(response);
+                    $('#brndname').val('');
+                    $('#compname').val('');
+                    $('#comphone').val('');
+                    $('#compmail').val('');
+                    $('#comlocation').val('');
+
+                },
+                error: function (e) {
+                    alert("an error has occured", e);
+                }
+
+
+
+            });
+
+
+
+
+        });
+
+
+
+
+    });
+</script>

@@ -1,36 +1,37 @@
-﻿
+﻿@model DeluxeModel.product
 @{
     ViewBag.Title = "Products";
     Layout = "~/Views/Shared/_AdminMaster.cshtml";
 }
 
-<form>
+
+
+<form id="prdform" enctype="multipart/form-data" method="post" onsubmit="SaveForm(this)">
+
 
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Product Name</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputEmail3" placeholder="product name">
+            <input type="text" class="form-control" id="prd_name"  name="prd_name" placeholder="product name">
         </div>
     </div>
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Product Brand</label>
         <div class="col-sm-10">
-            <select>
-                <option>1</option>
-            </select>
+            <select id="brnd_id" name="brnd_id"></select>
         </div>
     </div>
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Product Quantity</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" placeholder="Product Quantity" />
+            <input type="text" class="form-control" placeholder="Product Quantity" id="prd_quantity" name="prd_quantity" />
         </div>
     </div>
 
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Product Price</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" placeholder="Product Price" />
+            <input type="text" class="form-control" placeholder="Product Price" id="price" name="price" />
         </div>
     </div>
 
@@ -38,38 +39,133 @@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Product Supplier</label>
         <div class="col-sm-10">
-            <select>
-                <option>2</option>
-            </select>
+            <select id="supplier_id" name="supplier_id"></select>
         </div>
     </div>
 
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Product Category</label>
         <div class="col-sm-10">
-            <select>
-                <option>2</option>
-            </select>
+            <select id="Categ_id" name="Categ_id"></select>
         </div>
     </div>
 
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Product Description</label>
         <div class="col-sm-10">
-            <textarea class="form-control" placeholder="Product Description"></textarea>
+            <textarea class="form-control" placeholder="Product Description" id="prd_desc" name="prd_desc"></textarea>
         </div>
     </div>
 
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Product Price</label>
+        <label class="col-sm-2 col-form-label">Product Image</label>
         <div class="col-sm-10">
-            <input type="file" class="form-control" accept="image/*" />
+            <input type="file" class="form-control" accept="image/*" name="fileupload" id="fileupload" />
         </div>
     </div>
 
     <div class="form-group row">
         <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Save</button>
+            <input type="submit" class="btn btn-default" value="Save Image" id="btnimg"/>
+            <input type="button" class="btn btn-primary" id="btnsave" value="Save" />
         </div>
     </div>
 </form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+           $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetAllBrands", "Insertion","Admin")',
+                dataType: "json",
+                contentType: "application/json",
+                traditional: true,
+                success: function (data) {
+                    var s;
+                    for (var i = 0; i < data.length; i++)
+                    {
+                        s += '<option value="' + data[i].ID + '">' + data[i].Brnd_name + '</option>';
+
+                    }
+
+
+                    $("#brnd_id").html(s);
+                }
+            });
+
+        
+           $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetAllSuppliers", "Insertion","Admin")',
+                dataType: "json",
+                contentType: "application/json",
+                traditional: true,
+                success: function (data) {
+                    var s;
+                    for (var i = 0; i < data.length; i++)
+                    {
+                        s += '<option value="' + data[i].ID + '">' + data[i].company_name + '</option>';
+
+                    }
+
+
+                    $("#supplier_id").html(s);
+                }
+        });
+
+          $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetAllCategories", "Insertion","Admin")',
+                dataType: "json",
+                contentType: "application/json",
+                traditional: true,
+                success: function (data) {
+                    var s;
+                    for (var i = 0; i < data.length; i++)
+                    {
+                        s += '<option value="' + data[i].ID + '">' + data[i].Category_name + '</option>';
+
+                    }
+
+
+                    $("#Categ_id").html(s);
+                }
+            });
+
+
+
+
+
+   
+
+
+
+
+    });
+</script>
+
+<script>
+    function SaveForm(formData) {
+        var ajaxConfig = {
+            type: "POST",
+            url: '@Url.Action("InsertProduct", "Insertion","Admin")',
+            data: new FormData(formData),
+            success: function (result) {
+                alert(result);
+              
+            }
+        }
+        if ($(formData).attr('enctype') == "multipart/form-data") {
+            ajaxConfig["contentType"] = false;
+            ajaxConfig["processData"] = false;
+        }
+        $.ajax(ajaxConfig);
+        return false;
+    }
+</script>
