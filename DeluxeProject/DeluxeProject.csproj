@@ -134,6 +134,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController\InsertionController.cs" />
     <Compile Include="Controllers\AdminController\ProductsController.cs" />
+    <Compile Include="Controllers\UserController\ThirdPartyController.cs" />
+    <Compile Include="Controllers\UserController\UserActionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -144,8 +146,37 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\kertas1-.jpg" />
     <Content Include="Content\online-shop-logo-template_59362-86.jpg" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\Uiconstock-Shopping-Cart-Shoppingcart-01.ico" />
+    <Content Include="Content\UserMaster\css\main.css" />
+    <Content Include="Content\UserMaster\css\util.css" />
+    <Content Include="Content\UserMaster\fonts\font-awesome.min.css" />
+    <Content Include="Content\UserMaster\fonts\icon-font.min.css" />
+    <Content Include="Content\UserMaster\fonts\material-design-iconic-font.min.css" />
+    <Content Include="Content\UserMaster\js\animsition.min.js" />
+    <Content Include="Content\UserMaster\js\bootstrap.min.js" />
+    <Content Include="Content\UserMaster\js\daterangepicker.js" />
+    <Content Include="Content\UserMaster\js\jquery-3.2.1.min.js" />
+    <Content Include="Content\UserMaster\js\jquery.magnific-popup.min.js" />
+    <Content Include="Content\UserMaster\js\main.js" />
+    <Content Include="Content\UserMaster\js\map-custom.js" />
+    <Content Include="Content\UserMaster\js\moment.min.js" />
+    <Content Include="Content\UserMaster\js\parallax100.js" />
+    <Content Include="Content\UserMaster\js\popper.js" />
+    <Content Include="Content\UserMaster\js\select2.min.js" />
+    <Content Include="Content\UserMaster\js\slick-custom.js" />
+    <Content Include="Content\UserMaster\js\slick.min.js" />
+    <Content Include="Content\UserMaster\vendor\animate.css" />
+    <Content Include="Content\UserMaster\vendor\animsition.min.css" />
+    <Content Include="Content\UserMaster\vendor\bootstrap.min.css" />
+    <Content Include="Content\UserMaster\vendor\daterangepicker.css" />
+    <Content Include="Content\UserMaster\vendor\hamburgers.min.css" />
+    <Content Include="Content\UserMaster\vendor\magnific-popup.css" />
+    <Content Include="Content\UserMaster\vendor\perfect-scrollbar.css" />
+    <Content Include="Content\UserMaster\vendor\select2.min.css" />
+    <Content Include="Content\UserMaster\vendor\slick.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -155,6 +186,9 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\UserMaster\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Content\UserMaster\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Content\UserMaster\fonts\Material-Design-Iconic-Font.woff2" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -180,10 +214,19 @@
     <Content Include="Views\Products\Brands.cshtml" />
     <Content Include="Views\Products\Category.cshtml" />
     <Content Include="Views\Products\Supplier.cshtml" />
+    <Content Include="Views\Products\GetProducts.cshtml" />
+    <Content Include="Views\Shared\_UserMaster.cshtml" />
+    <Content Include="Views\UserActions\Home.cshtml" />
+    <Content Include="Views\UserActions\SignUp.cshtml" />
+    <Content Include="Views\UserActions\Login.cshtml" />
+    <Content Include="Views\Shared\_Navbar.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="App_File\Images\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\ThirdParty\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

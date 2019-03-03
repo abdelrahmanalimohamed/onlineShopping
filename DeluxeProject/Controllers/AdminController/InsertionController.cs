@@ -81,6 +81,7 @@ namespace DeluxeProject.Controllers.AdminController
                 string extension = Path.GetExtension(product.fileupload.FileName);
                 fileName = fileName + DateTime.Now.ToString("yymmssff") + extension;
                 product.prd_img = fileName;
+                product.fileupload.SaveAs(Path.Combine(Server.MapPath("~/App_File/Images"), fileName));
                 db.products.Add(product);
                 db.SaveChanges();
                 return Json("Added", JsonRequestBehavior.AllowGet);
@@ -113,6 +114,11 @@ namespace DeluxeProject.Controllers.AdminController
                                select a;
             return Json(allsuppliers, JsonRequestBehavior.AllowGet);
         }
+        [HttpGet]
+        public JsonResult GetALLProducts()
+        {
+            return Json(db.products.ToList(), JsonRequestBehavior.AllowGet);
+        }
 
         [HttpGet]
         public JsonResult GetAllCategories()
@@ -122,6 +128,8 @@ namespace DeluxeProject.Controllers.AdminController
                                 select a;
             return Json(allcategories, JsonRequestBehavior.AllowGet);
         }
+
+
 
        
     }
