@@ -1,4 +1,6 @@
-﻿
+﻿@using DeluxeModel
+
+
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_UserMaster.cshtml";
@@ -131,6 +133,11 @@
 <div class="vl">
     <span class="vl-innertext">OR</span>
 </div>
+
+
+  
+    
+
 <div class="col">
     <button class="google btn">
         <i class="fa fa-google fa-fw"></i>
@@ -139,14 +146,17 @@
 
 
     <br />
+    @using (Html.BeginForm("Login", "ThirdParty", FormMethod.Post))
+    {
 
-    <button class="fb btn">
-        <i class="fa fa-facebook fa-fw"></i>
-        Login with Facebook
+        <button class="fb btn" id="btnfb" type="submit">
+            <i class="fa fa-facebook fa-fw"></i>
+            Login with Facebook
 
-    </button>
+        </button>
+        
 
-
+    }
 </div>
 
 <div class="col">
@@ -161,6 +171,48 @@
 
 
     <input type="submit" value="Save" class="btn btn-primary" />
-   
+
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+@*<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnfb").click(function () {
+
+
+
+
+            $.ajax({
+                url:'@Url.Action("Login","ThirdParty","user")',
+                type: "POST",
+                data: "",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (response) {
+                    alert(response);
+                  
+
+                },
+                error: function (e) {
+                    alert("an error has occured", e);
+                }
+
+
+
+            });
+
+
+
+
+        });
+
+
+
+
+    });
+</script>*@
