@@ -139,7 +139,7 @@
 
 
 <div class="col">
-  
+
 
     <br />
     @using (Html.BeginForm("Login", "ThirdParty", FormMethod.Post))
@@ -181,20 +181,23 @@
     <input type="button" id="btnsave" value="Save" class="btn btn-primary" />
 
 </div>
-@if (ViewBag.ErrorMSG != null)
-{
-    <script type="text/javascript">
-           
-      alert('@ViewBag.ErrorMSG');
-           
-    </script>
-}
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+@if (ViewBag.ErrorMSG != null)
+{
+    <script type="text/javascript">
+
+      alert('@ViewBag.ErrorMSG');
+
+    </script>
+}
+
+@if(ViewBag.)
 <script type="text/javascript">
     $(document).ready(function () {
         $("#btnsave").click(function () {

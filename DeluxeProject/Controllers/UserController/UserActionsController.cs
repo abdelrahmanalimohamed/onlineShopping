@@ -14,6 +14,7 @@ namespace DeluxeProject.Controllers.UserController
     public class UserActionsController : Controller
     {
         DeluxeShoppingEntities db = new DeluxeShoppingEntities();
+        UserChecking Checking = new UserChecking();
        public ActionResult SignUp()
         {
             FaceBookConnect.API_Key = "761905080858164";
@@ -33,12 +34,22 @@ namespace DeluxeProject.Controllers.UserController
                     {
                         string data = FaceBookConnect.Fetch(code, "me?fields=name,email");
                         customers = new JavaScriptSerializer().Deserialize<customers>(data);
+
                         Session["mail"] = customers.email;
                         Session["username"] = customers.name;
+                   var validate = Checking.CheckInUser(customers.email);
+                    if(validate == true)
+                    {
+                        ViewBag.validationMSg = "Already Existed";
+                    }
+                    else
+                    {
                         user.emails = customers.email;
                         user.name = customers.name;
                         db.users.Add(user);
                         db.SaveChanges();
+                    }
+                        
                     }
         
             }
@@ -67,6 +78,12 @@ namespace DeluxeProject.Controllers.UserController
         public ActionResult Checkout()
         {
             return View();
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+          return  RedirectToAction("Home", "UserAction");
         }
     }
 }

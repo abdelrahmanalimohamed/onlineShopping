@@ -9,14 +9,22 @@
 <html>
 
 <body>
- @Html.Partial("_Navbar")
-<div class="container">
+    @if (Session["username"] != null)
+    {
+        @Html.Partial("_Logout")
+    }
+    else
+    {
+        @Html.Partial("_Navbar")
+    }
+
+    <div class="container">
         @RenderBody()
     </div>
 
-<div>
+    <div>
 
-</div>
+    </div>
     <footer>
         @Html.Partial("_Footer")
     </footer>
