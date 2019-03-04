@@ -1,38 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using ASPSnippets.FaceBookAPI;
 using DeluxeModel;
+using DeluxeProject.Models;
 
 namespace DeluxeProject.Controllers.UserController
 {
     public class UserActionsController : Controller
     {
-
+        DeluxeShoppingEntities db = new DeluxeShoppingEntities();
        public ActionResult SignUp()
         {
-            FaceBookConnect.API_Key = "824415404557890";
-            FaceBookConnect.API_Secret = "8f48f5360b2600fb2744af16d903c28e";
+            FaceBookConnect.API_Key = "761905080858164";
+            FaceBookConnect.API_Secret = "962d097a2ef51220b74329509a6f61fa";
+
             user user = new user();
+            customers customers = new customers();
            
             if (Request.QueryString["code"] == "access_denied")
             {
                 ViewBag.Message = "user has denied access";
             }
-            else
-            {
-                string code = Request.QueryString["code"];
-                if (!string.IsNullOrEmpty(code))
-                {
-                    string data = FaceBookConnect.Fetch(code, "me?fields=name,email");
-                    user = new JavaScriptSerializer().Deserialize<user>(data);
-                   
-                }
+            try
+            { 
+                  string code = Request.QueryString["code"];
+                    if (!string.IsNullOrEmpty(code))
+                    {
+                        string data = FaceBookConnect.Fetch(code, "me?fields=name,email");
+                        customers = new JavaScriptSerializer().Deserialize<customers>(data);
+                        Session["mail"] = customers.email;
+                        Session["username"] = customers.name;
+                        user.emails = customers.email;
+                        user.name = customers.name;
+                        db.users.Add(user);
+                        db.SaveChanges();
+                    }
+        
             }
-            return View();
+           catch(Exception ex)
+            {
+                ViewBag.ErrorMSG = ex;
+            }
+            return View(user);
         }
 
         public ActionResult Home()

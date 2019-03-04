@@ -4,14 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DeluxeShoppingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'DeluxeShopping.dbo.admins' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="admins">
-          <Property Name="ID" Type="int" />
-          <Property Name="username" Type="varchar" MaxLength="50" />
-          <Property Name="passoword" Type="varchar" MaxLength="50" />
-        </EntityType>-->
+    <Schema Namespace="DeluxeShoppingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Brands">
           <Key>
             <PropertyRef Name="ID" />
@@ -257,8 +250,7 @@ warning 6013: The table/view 'DeluxeShopping.dbo.admins' does not have a primary
             <End Role="products" EntitySet="products" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DeluxeShoppingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -507,10 +499,10 @@ warning 6013: The table/view 'DeluxeShopping.dbo.admins' does not have a primary
             <End Role="products" EntitySet="products" />
           </AssociationSet>
           <FunctionImport Name="insertbrand">
-            <Parameter Name="brndname" Mode="In" Type="String" />
+          <Parameter Name="brndname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="insertcategory">
-            <Parameter Name="catname" Mode="In" Type="String" />
+          <Parameter Name="catname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="insertsupplier">
             <Parameter Name="companyname" Mode="In" Type="String" />

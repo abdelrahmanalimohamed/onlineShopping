@@ -25,12 +25,11 @@ namespace DeluxeModel
         public Nullable<int> supplier_id { get; set; }
         public Nullable<int> brnd_id { get; set; }
     
+        public HttpPostedFileBase fileupload { get; set; }
+
+
         public virtual Brand Brand { get; set; }
         public virtual Category Category { get; set; }
         public virtual supplier supplier { get; set; }
-
-
-
-        public HttpPostedFileBase fileupload { get; set; }
     }
 }

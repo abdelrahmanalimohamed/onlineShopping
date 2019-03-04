@@ -1,4 +1,4 @@
-﻿@using DeluxeModel
+﻿@model DeluxeModel.user
 
 
 @{
@@ -135,15 +135,11 @@
 </div>
 
 
-  
-    
+
+
 
 <div class="col">
-    <button class="google btn">
-        <i class="fa fa-google fa-fw"></i>
-        Login with google+
-    </button>
-
+  
 
     <br />
     @using (Html.BeginForm("Login", "ThirdParty", FormMethod.Post))
@@ -154,7 +150,19 @@
             Login with Facebook
 
         </button>
-        
+
+        if (!string.IsNullOrEmpty(Model.name))
+        {
+            <table>
+                <tr>
+                    <td>@Model.name</td>
+                </tr>
+
+                <tr>
+                    <td>@Model.email</td>
+                </tr>
+            </table>
+        }
 
     }
 </div>
@@ -170,24 +178,29 @@
     <input type="text" placeholder="City" required />
 
 
-    <input type="submit" value="Save" class="btn btn-primary" />
+    <input type="button" id="btnsave" value="Save" class="btn btn-primary" />
 
 </div>
-
+@if (ViewBag.ErrorMSG != null)
+{
+    <script type="text/javascript">
+           
+      alert('@ViewBag.ErrorMSG');
+           
+    </script>
+}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-@*<script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function () {
-        $("#btnfb").click(function () {
+        $("#btnsave").click(function () {
 
-
-
-
-            $.ajax({
+            alert("Hello");
+            @*$.ajax({
                 url:'@Url.Action("Login","ThirdParty","user")',
                 type: "POST",
                 data: "",
@@ -195,7 +208,7 @@
                 contentType: "application/json",
                 success: function (response) {
                     alert(response);
-                  
+
 
                 },
                 error: function (e) {
@@ -204,7 +217,7 @@
 
 
 
-            });
+            });*@
 
 
 
@@ -215,4 +228,4 @@
 
 
     });
-</script>*@
+</script>
