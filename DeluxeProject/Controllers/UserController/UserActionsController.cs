@@ -62,9 +62,10 @@ namespace DeluxeProject.Controllers.UserController
 
         public ActionResult Home()
         {
-            return View();
+            return View(db.products.ToList());
         }
         
+      
         public ActionResult Product()
         {
             return View();

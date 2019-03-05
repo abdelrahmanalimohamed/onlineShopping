@@ -95,8 +95,7 @@
                         s += '<option value="' + data[i].ID + '">' + data[i].Brnd_name + '</option>';
 
                     }
-
-
+                    
                     $("#brnd_id").html(s);
                 }
             });
@@ -139,16 +138,7 @@
                     $("#Categ_id").html(s);
                 }
             });
-
-
-
-
-
-   
-
-
-
-
+        
     });
 </script>
 
@@ -159,9 +149,7 @@
             url: '@Url.Action("InsertProduct", "Insertion","Admin")',
             data: new FormData(formData),
             success: function (result) {
-               
                 alert("Done");
-              
             }
         }
         if ($(formData).attr('enctype') == "multipart/form-data") {

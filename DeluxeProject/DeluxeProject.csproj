@@ -221,12 +221,12 @@
     <Content Include="Views\Products\Supplier.cshtml" />
     <Content Include="Views\Products\GetProducts.cshtml" />
     <Content Include="Views\Shared\_UserMaster.cshtml" />
-    <Content Include="Views\UserActions\Home.cshtml" />
     <Content Include="Views\UserActions\SignUp.cshtml" />
     <Content Include="Views\UserActions\Login.cshtml" />
     <Content Include="Views\Shared\_Navbar.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_logout.cshtml" />
+    <Content Include="Views\UserActions\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
