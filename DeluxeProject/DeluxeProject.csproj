@@ -137,6 +137,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController\InsertionController.cs" />
     <Compile Include="Controllers\AdminController\ProductsController.cs" />
+    <Compile Include="Controllers\simpleController.cs" />
     <Compile Include="Controllers\UserController\ThirdPartyController.cs" />
     <Compile Include="Controllers\UserController\UserActionsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -231,7 +232,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_File\Images\" />
-    <Folder Include="Views\ThirdParty\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

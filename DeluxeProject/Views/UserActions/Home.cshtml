@@ -69,10 +69,10 @@
             font-weight: 600;
             text-transform: uppercase
         }
-        .imgoo{
-            height:200px;
 
-        }
+    .imgoo {
+        height: 200px;
+    }
 </style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -95,7 +95,7 @@
 
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img src="https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/0cd4916a-5f9d-470e-a419-bff6f56c8b34.png" class="imgoo" >
+                        <img src="https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/0cd4916a-5f9d-470e-a419-bff6f56c8b34.png" class="imgoo">
                         <div class="carousel-caption">
                             <h3></h3>
 
@@ -109,7 +109,7 @@
                         </div>
                     </div>
                     <div class="item">
-                        <img src="https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/c6f05b73-0168-4419-bff4-b0e7f60ff903.png" class="imgoo" >
+                        <img src="https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/c6f05b73-0168-4419-bff4-b0e7f60ff903.png" class="imgoo">
                         <div class="carousel-caption">
                             <h3></h3>
 
@@ -137,48 +137,70 @@
     <div class="col-xs-12 col-sm-4">
 
         <div class="card">
+       <a class="img-card" href="">
+       <img src="~/App_File/Images/@item.prd_img" />
+       </a>
+         <input hidden type="text" value="@item.ID" id="txtid" />
+       <div class="card-content">
+         <h4 class="card-title">
+          <a href="" id="imgtag">
+             @item.prd_name
+               </a>
+            </h4>
+            <div class="">
+                 @item.prd_desc
+             </div>
+       </div>
+           
+       <div class="card-read-more">
+        
+           @Html.ActionLink("Add to cart", "GetID", "simple","/Controllers",new { id = @item.ID })
+        
 
-            <table>
-                <tr>
-                    <td>
-                        <a class="img-card" href="">
-                            <img src="~/App_File/Images/@item.prd_img" />
-                        </a>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <div class="card-content">
-                            <h4 class="card-title">
-                                <a href="">
-                                    @item.prd_name
-                                </a>
-                            </h4>
-                            <div class="">
-                                @item.prd_desc
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-
-
-            </table>
-
-
-            <div class="card-read-more">
-                <button class="btn btn-link btn-block" id="addtocart">
-                    Add to cart
-                </button>
-            </div>
+       </div>
         </div>
-     
+
     </div>
 }
- 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+<button>
+    www
+</button>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+      $(document).ready(function () {
+          var value = document.getElementsByClassName['delete'].value;
+          console.log(value);
+          $(".delete").click(function () {
+              alert(value);
+               @*$.ajax({
+                  url: '@Url.Action("GetID", "Insertion","Admin")',
+                   type: "POST",
+                   data: JSON.stringify(value),
+                  dataType: "json",
+                  contentType: "application/json",
+                  success: function (response) {
+                      alert(response);
+
+
+                  },
+                  error: function (e) {
+                      alert("an error has occured", e);
+                  }
+
+
+
+              });*@
+
+            });
+        });
     </script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
 
 
 
