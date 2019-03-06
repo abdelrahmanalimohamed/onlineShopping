@@ -1,0 +1,43 @@
+﻿@model IEnumerable<DeluxeModel.product>
+@{
+    ViewBag.Title = "showitem";
+    Layout = "~/Views/Shared/_UserMaster.cshtml";
+}
+<link rel="stylesheet" href="style.css">
+<link href="http://www.professorcloud.com/styles/cloud-zoom.css" rel="stylesheet" type="text/css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.js"></script>
+<script type="text/JavaScript" src="http://www.professorcloud.com/js/cloud-zoom.1.0.2.js"></script>
+<script src="~/Scripts/app.js"></script>
+@foreach (var item in Model)
+{
+    <table>
+        <tr>
+            <td>
+                <img src="~/App_File/Images/@item.prd_img" class="img-responsive" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>
+                    <h1>Description</h1>
+                    @item.prd_desc
+                </span>
+                <br />
+                <span>
+                    <h1>Quantity</h1>
+                    @item.prd_quantity
+                </span>
+            </td>
+        </tr>
+    </table>
+}
+    <div class="float-md-right">
+        <button href="#" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-shopping-cart"></span> Add to shopping cart
+        </button>
+
+    </div>
+
+
+

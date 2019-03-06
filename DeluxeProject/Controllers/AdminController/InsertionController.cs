@@ -12,11 +12,7 @@ namespace DeluxeProject.Controllers.AdminController
     {
         DeluxeShoppingEntities db = new DeluxeShoppingEntities();
      
-        [HttpPost]
-        public JsonResult GetID (int id)
-        {
-            return Json(id, JsonRequestBehavior.AllowGet);
-        }
+      
         [HttpPost]
         public JsonResult InsertBrand(string name)
         {

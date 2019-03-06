@@ -60,17 +60,27 @@ namespace DeluxeProject.Controllers.UserController
             return View(user);
         }
 
+        [HttpGet]
+        public ActionResult showitem(int id)
+        {
+            var selecteditem = (from a in db.products
+                                where a.ID == id
+                                select a).ToList();
+
+            Session["itemid"] = id;
+            return View(selecteditem);
+        }
+
+        [HttpPost]
+
+
+   
         public ActionResult Home()
         {
             return View(db.products.ToList());
         }
         
-      
-        public ActionResult Product()
-        {
-            return View();
-        }
-
+    
         public ActionResult Login()
         {
             return View();
@@ -84,7 +94,7 @@ namespace DeluxeProject.Controllers.UserController
         public ActionResult Logout()
         {
             Session.Clear();
-          return  RedirectToAction("Home", "UserAction");
+          return  RedirectToAction("Home", "UserActions","/Controllers/User");
         }
     }
 }

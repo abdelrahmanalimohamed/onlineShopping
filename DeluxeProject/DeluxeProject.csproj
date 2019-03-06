@@ -137,7 +137,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController\InsertionController.cs" />
     <Compile Include="Controllers\AdminController\ProductsController.cs" />
-    <Compile Include="Controllers\simpleController.cs" />
     <Compile Include="Controllers\UserController\ThirdPartyController.cs" />
     <Compile Include="Controllers\UserController\UserActionsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -228,6 +227,7 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_logout.cshtml" />
     <Content Include="Views\UserActions\Home.cshtml" />
+    <Content Include="Views\UserActions\showitem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
