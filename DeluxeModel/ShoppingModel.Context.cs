@@ -38,6 +38,7 @@ namespace DeluxeModel
         public virtual DbSet<supplier> suppliers { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<shopping_cart_details> shopping_cart_details { get; set; }
     
         public virtual int insertbrand(string brndname)
         {

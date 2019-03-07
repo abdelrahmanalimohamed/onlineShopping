@@ -88,6 +88,9 @@
     <Compile Include="shopping_cart.cs">
       <DependentUpon>ShoppingModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="shopping_cart_details.cs">
+      <DependentUpon>ShoppingModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="supplier.cs">
       <DependentUpon>ShoppingModel.tt</DependentUpon>
     </Compile>

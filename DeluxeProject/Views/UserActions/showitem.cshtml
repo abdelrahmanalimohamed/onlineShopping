@@ -9,6 +9,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.js"></script>
 <script type="text/JavaScript" src="http://www.professorcloud.com/js/cloud-zoom.1.0.2.js"></script>
 <script src="~/Scripts/app.js"></script>
+@if(Session["itemid"] == null)
+{
+    @Html.Partial("_")
+}
+
 @foreach (var item in Model)
 {
     <table>
@@ -32,12 +37,52 @@
         </tr>
     </table>
 }
-    <div class="float-md-right">
-        <button href="#" class="btn btn-info btn-lg">
-            <span class="glyphicon glyphicon-shopping-cart"></span> Add to shopping cart
-        </button>
+<div class="float-md-right">
+    <button href="#" class="btn btn-info btn-lg" id="btnaddtocart">
+        <span class="glyphicon glyphicon-shopping-cart"></span> Add to shopping cart
+    </button>
 
-    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+      $(document).ready(function () {
+
+          var selected_id = @Session["itemid"];
+          var id = { "id": selected_id }
+          $("#btnaddtocart").click(function () {
+
+            $.ajax({
+                url:'@Url.Action("AddtoCart", "UserActions","User")',
+                type: "POST",
+                data: JSON.stringify(id),
+                dataType: "json",
+                contentType: "application/json",
+                success: function (response) {
+                    alert(response);
+                },
+                error: function (e) {
+                    alert("an error has occured", e);
+                }
+
+
+
+            });
+
+
+
+
+        });
+        });
+</script>
 
 
 

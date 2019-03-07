@@ -22,6 +22,7 @@
         <AssociationConnector Association="DeluxeShoppingModel.FK_orders_Payments" ManuallyRouted="false" />
         <AssociationConnector Association="DeluxeShoppingModel.FK_orders_users" ManuallyRouted="false" />
         <AssociationConnector Association="DeluxeShoppingModel.FK_products_suppliers" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DeluxeShoppingModel.shopping_cart_details" Width="1.5" PointX="5.375" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

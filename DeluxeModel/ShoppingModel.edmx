@@ -73,6 +73,14 @@
           <Property Name="count" Type="int" />
           <Property Name="total_amount" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="shopping_cart_details">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="item_id" Type="int" />
+          <Property Name="order_id" Type="int" />
+        </EntityType>
         <EntityType Name="Supplier_Details">
           <Key>
             <PropertyRef Name="ID" />
@@ -221,6 +229,7 @@
           <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="shopping_cart" EntityType="Self.shopping_cart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="shopping_cart_details" EntityType="Self.shopping_cart_details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supplier_Details" EntityType="Self.Supplier_Details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="suppliers" EntityType="Self.suppliers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -510,7 +519,16 @@
             <Parameter Name="companymail" Mode="In" Type="String" />
             <Parameter Name="companylocation" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="shopping_cart_details" EntityType="DeluxeShoppingModel.shopping_cart_details" />
         </EntityContainer>
+        <EntityType Name="shopping_cart_details">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="item_id" Type="Int32" />
+          <Property Name="order_id" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -643,6 +661,15 @@
           <FunctionImportMapping FunctionImportName="insertbrand" FunctionName="DeluxeShoppingModel.Store.insertbrand" />
           <FunctionImportMapping FunctionImportName="insertcategory" FunctionName="DeluxeShoppingModel.Store.insertcategory" />
           <FunctionImportMapping FunctionImportName="insertsupplier" FunctionName="DeluxeShoppingModel.Store.insertsupplier" />
+          <EntitySetMapping Name="shopping_cart_details">
+            <EntityTypeMapping TypeName="DeluxeShoppingModel.shopping_cart_details">
+              <MappingFragment StoreEntitySet="shopping_cart_details">
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
