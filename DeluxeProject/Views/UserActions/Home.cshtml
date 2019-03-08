@@ -142,9 +142,12 @@
        </div>
            
        <div class="card-read-more">
-        
-           @Html.ActionLink("View", "showitem", new { id = @item.ID } )
-        
+
+           @Html.ActionLink("View", "showitem", new { id = @item.ID })
+
+
+           @Html.ActionLink("Check-out", "shoppingcartitem")
+
        </div>
         </div>
 

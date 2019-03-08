@@ -1,0 +1,24 @@
+﻿@model IEnumerable<DeluxeModel.product>
+@{
+    ViewBag.Title = "shoppingcartitem";
+    Layout = "~/Views/Shared/_UserMaster.cshtml";
+}
+
+@foreach(var item in Model)
+{
+   <table>
+       <tbody>
+           <tr>
+               <td>
+                   @item.prd_name
+               </td>
+           </tr>
+           <tr>
+               <td>
+                   <img src="~/App_File/Images/@item.prd_img" />
+               </td>
+           </tr>
+       </tbody>
+   </table>
+}
+

@@ -13,7 +13,7 @@ namespace DeluxeProject.Controllers.UserController
         [AllowAnonymous]
         public EmptyResult Login()
         {
-            FaceBookConnect.Authorize("email", string.Format("{0}://{1}/{2}", Request.Url.Scheme, Request.Url.Authority, "UserActions/Home/"));
+            FaceBookConnect.Authorize("email", string.Format("{0}://{1}/{2}", Request.Url.Scheme, Request.Url.Authority, "UserActions/SignUp/"));
 
             return new EmptyResult();
         }

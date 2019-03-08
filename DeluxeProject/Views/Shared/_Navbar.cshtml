@@ -1,4 +1,27 @@
-﻿<header>
+﻿<style>
+    #lblcartcount {
+        font-size: 12px;
+        background: #ff0000;
+        color: #fff;
+        padding: 0 5px;
+        vertical-align: top;
+        margin-left: -10px;
+    }
+
+    .badge {
+        padding-left: 9px;
+        padding-right: 9px;
+        -webkit-border-radius: 9px;
+        -moz-border-radius: 9px;
+        border-radius: 9px;
+    }
+
+    .label-warning[href],
+    .badge-warning[href] {
+        background-color: #c67605;
+    }
+</style>
+<header>
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -12,15 +35,23 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li class="active"><a href="@Url.Action("Home","UserActions")">Home</a></li>
+                    <li><a href="@Url.Action("","")">About</a></li>
+                    <li><a href="@Url.Action("","")">Shop</a></li>
+                    <li><a href="@Url.Action("","")">Contact</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="@Url.Action("SignUp","UserActions")"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                     <li><a href="@Url.Action("Login","UserActions")"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                    <li><a href="@Url.Action("","")"><span class="glyphicon glyphicon-shopping-cart"></span>Cart</a></li>
+                    <li><a href="@Url.Action("","")">
+                        <span class="glyphicon glyphicon-shopping-cart badge badge-warning " id="lblcartcount">
+                          
+                                @Session["itemcount"]
+                            
+                            </span>
+                        Cart
+                        </a>
+                    </li>
                 </ul>
             </div>
 

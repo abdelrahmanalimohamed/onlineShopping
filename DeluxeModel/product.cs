@@ -21,6 +21,8 @@ namespace DeluxeModel
         public string price { get; set; }
         public string prd_desc { get; set; }
         public string prd_img { get; set; }
+
+     
         public Nullable<int> Categ_id { get; set; }
         public Nullable<int> supplier_id { get; set; }
         public Nullable<int> brnd_id { get; set; }
