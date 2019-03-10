@@ -24,7 +24,7 @@ namespace DeluxeProject.Controllers.UserController
             FaceBookConnect.API_Secret = "962d097a2ef51220b74329509a6f61fa";
 
             user user = new user();
-            customers customers = new customers();
+            customer customers = new customer();
            
             if (Request.QueryString["code"] == "access_denied")
             {
@@ -36,7 +36,7 @@ namespace DeluxeProject.Controllers.UserController
                     if (!string.IsNullOrEmpty(code))
                     {
                         string data = FaceBookConnect.Fetch(code, "me?fields=name,email");
-                        customers = new JavaScriptSerializer().Deserialize<customers>(data);
+                        customers = new JavaScriptSerializer().Deserialize<customer>(data);
 
                         Session["mail"] = customers.email;
                         Session["username"] = customers.name;
@@ -77,6 +77,7 @@ namespace DeluxeProject.Controllers.UserController
     
         public JsonResult AddtoCart(int id)
         {
+            Session["iding"] = id;
             shopping_cart_details shopping_Cart_Details = new shopping_cart_details();
             int last_order_id;
             var checking = (from a in db.orders
@@ -84,14 +85,22 @@ namespace DeluxeProject.Controllers.UserController
                 if (checking == 0)
                 {
                     last_order_id = checking + 1;
-                    var cart_icon = (from a in db.shopping_cart_details
+
+                  var cart_icon = (from a in db.shopping_cart_details
                                      where a.order_id == last_order_id
                                      select a.order_id).Count();
-                    Session["itemcount"] = cart_icon;
-                    shopping_Cart_Details.item_id = id;
-                    shopping_Cart_Details.order_id = last_order_id;
-                    db.shopping_cart_details.Add(shopping_Cart_Details);
-                    db.SaveChanges();
+
+                var itemprice = (from a in db.products
+                                where a.ID == id
+                                select a.price).FirstOrDefault();
+
+                     Session["itemcount"] = cart_icon;
+                     shopping_Cart_Details.item_id = id;
+                     shopping_Cart_Details.item_price = itemprice;
+                     shopping_Cart_Details.item_amount = 1;
+                     shopping_Cart_Details.order_id = last_order_id;
+                     db.shopping_cart_details.Add(shopping_Cart_Details);
+                     db.SaveChanges();
                 }
                 else
                 {
@@ -115,14 +124,15 @@ namespace DeluxeProject.Controllers.UserController
 
         public ActionResult shoppingcartitem()
         {
+            int item_id = Convert.ToInt32(Session["iding"]);
             var order_id_ = (from a in db.orders
-                             select a.ID).Count();
+                             select a.ID).Count()+1;
 
-            int last = order_id_ + 1;
             var checkout = (from a in db.shopping_cart_details
-                            where a.order_id == last
+                            where a.order_id == order_id_ 
                             join b in db.products on a.item_id equals b.ID
-                            select b).ToList().AsEnumerable();
+                            select b).ToList();
+             
             return View(checkout);
 
         }

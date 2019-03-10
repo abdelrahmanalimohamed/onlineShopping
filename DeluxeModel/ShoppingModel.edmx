@@ -80,6 +80,8 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="item_id" Type="int" />
           <Property Name="order_id" Type="int" />
+          <Property Name="item_price" Type="varchar" MaxLength="50" />
+          <Property Name="item_amount" Type="int" />
         </EntityType>
         <EntityType Name="Supplier_Details">
           <Key>
@@ -125,6 +127,12 @@
           <Property Name="phone_number" Type="varchar" MaxLength="50" />
           <Property Name="city_region" Type="varchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'DeluxeShopping.dbo.ItemAmountCalculation' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ItemAmountCalculation">
+          <Property Name="item_id" Type="int" />
+          <Property Name="TOTALAMOUNT" Type="int" />
+        </EntityType>-->
         <Association Name="FK_order_details_orders">
           <End Role="orders" Type="Self.orders" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -528,6 +536,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="item_id" Type="Int32" />
           <Property Name="order_id" Type="Int32" />
+          <Property Name="item_price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="item_amount" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -664,6 +674,8 @@
           <EntitySetMapping Name="shopping_cart_details">
             <EntityTypeMapping TypeName="DeluxeShoppingModel.shopping_cart_details">
               <MappingFragment StoreEntitySet="shopping_cart_details">
+                <ScalarProperty Name="item_amount" ColumnName="item_amount" />
+                <ScalarProperty Name="item_price" ColumnName="item_price" />
                 <ScalarProperty Name="order_id" ColumnName="order_id" />
                 <ScalarProperty Name="item_id" ColumnName="item_id" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

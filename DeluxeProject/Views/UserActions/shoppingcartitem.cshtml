@@ -1,24 +1,100 @@
 ﻿@model IEnumerable<DeluxeModel.product>
 @{
     ViewBag.Title = "shoppingcartitem";
-    Layout = "~/Views/Shared/_UserMaster.cshtml";
+    Layout = null;
 }
 
-@foreach(var item in Model)
-{
-   <table>
-       <tbody>
-           <tr>
-               <td>
-                   @item.prd_name
-               </td>
-           </tr>
-           <tr>
-               <td>
-                   <img src="~/App_File/Images/@item.prd_img" />
-               </td>
-           </tr>
-       </tbody>
-   </table>
-}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping Cart items</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/shopping-cart.css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <main class="page">
+        <section class="shopping-cart dark">
+            <div class="container">
+                <div class="block-heading">
+                </div>
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-8">
+                            @foreach (var item in Model)
+                            {
+                                <div class="items">
+                                    <div class="product">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <img class="img-fluid mx-auto d-block image" src="~/App_File/Images/@item.prd_img">
+                                            </div>
+
+
+
+                                            <div class="col-md-8">
+                                                <div class="info">
+                                                    <div class="row">
+                                                        <div class="col-md-5 product-name">
+                                                            <div class="product-name">
+                                                                <a href="#">@item.prd_name</a>
+                                                                <div class="product-info">
+                                                                    <div>Display: <span class="value">5 inch</span></div>
+                                                                    <div>RAM: <span class="value">4GB</span></div>
+                                                                    <div>Memory: <span class="value">32GB</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 quantity">
+                                                            <label for="quantity">Quantity:</label>
+                                                            <input id="quantity" type="number" value="1" class="form-control quantity-input">
+                                                        </div>
+                                                        <div class="col-md-3 price">
+                                                            <span>$120</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                
+                                 
+                                </div>
+                            }
+                            </div>
+                        <div class="col-md-12 col-lg-4">
+                            <div class="summary">
+                                <h3>Summary</h3>
+                                <div class="summary-item"><span class="text">Subtotal</span><span class="price">$360</span></div>
+                                <div class="summary-item"><span class="text">Discount</span><span class="price">$0</span></div>
+                                <div class="summary-item"><span class="text">Shipping</span><span class="price">$0</span></div>
+                                <div class="summary-item"><span class="text">Total</span><span class="price">$360</span></div>
+                                <button type="button" class="btn btn-primary btn-lg btn-block">Checkout</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+
+</html>
+
+
+
+
+
+
+
+
 

@@ -38,12 +38,16 @@
 
 }
 
-<div class="float-md-right">
-    <button href="#" class="btn btn-info btn-lg" id="btnaddtocart">
-        <span class="glyphicon glyphicon-shopping-cart"></span> Add to shopping cart
-    </button>
+    <div class="float-md-right">
+        <button href="#" class="btn btn-info btn-lg" id="btnaddtocart">
+            <span class="glyphicon glyphicon-shopping-cart"></span> Add to shopping cart
+        </button>
 
-</div>
+        <a href="@Url.Action("shoppingcartitem","UserActions")" class="btn btn-default btn-lg">
+            <span class="glyphicon glyphicon-send"></span> Processed To checkOut
+        </a>
+
+    </div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -77,6 +81,10 @@
             });
 
           });
+
+
+     
+
 
         });
 </script>

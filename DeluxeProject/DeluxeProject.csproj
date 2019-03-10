@@ -142,7 +142,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\customers.cs" />
+    <Compile Include="Models\customer.cs" />
     <Compile Include="Models\UserChecking.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -153,6 +153,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\kertas1-.jpg" />
     <Content Include="Content\online-shop-logo-template_59362-86.jpg" />
+    <Content Include="Content\shopping-cart.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Uiconstock-Shopping-Cart-Shoppingcart-01.ico" />
     <Content Include="Content\UserMaster\css\main.css" />

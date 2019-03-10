@@ -17,5 +17,7 @@ namespace DeluxeModel
         public int ID { get; set; }
         public Nullable<int> item_id { get; set; }
         public Nullable<int> order_id { get; set; }
+        public string item_price { get; set; }
+        public Nullable<int> item_amount { get; set; }
     }
 }
