@@ -15,12 +15,11 @@ namespace DeluxeModel
     public partial class order
     {
         public int ID { get; set; }
-        public string ordername { get; set; }
         public Nullable<decimal> amount { get; set; }
         public Nullable<System.DateTime> date_created { get; set; }
-        public string confirmation_number { get; set; }
         public Nullable<int> user_id { get; set; }
         public Nullable<int> payment_id { get; set; }
+        public Nullable<double> total_sum { get; set; }
     
         public virtual order_details order_details { get; set; }
         public virtual Payment Payment { get; set; }

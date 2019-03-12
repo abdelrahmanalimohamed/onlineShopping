@@ -20,7 +20,7 @@ namespace DeluxeModel
         public string order_prd_qty { get; set; }
         public string order_prd_price { get; set; }
         public Nullable<int> prd_id { get; set; }
-        public Nullable<int> ord_id { get; set; }
+        public Nullable<int> user_id { get; set; }
     
         public virtual order order { get; set; }
     }

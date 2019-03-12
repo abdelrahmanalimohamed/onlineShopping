@@ -24,24 +24,23 @@
             <PropertyRef Name="order_id" />
           </Key>
           <Property Name="order_id" Type="int" Nullable="false" />
-          <Property Name="order_date" Type="date" />
+          <Property Name="prd_id" Type="int" />
+          <Property Name="user_id" Type="int" />
           <Property Name="order_prd_name" Type="varchar" MaxLength="50" />
           <Property Name="order_prd_qty" Type="varchar" MaxLength="50" />
           <Property Name="order_prd_price" Type="varchar" MaxLength="50" />
-          <Property Name="prd_id" Type="int" />
-          <Property Name="ord_id" Type="int" />
+          <Property Name="order_date" Type="date" />
         </EntityType>
         <EntityType Name="orders">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ordername" Type="varchar" MaxLength="50" />
           <Property Name="amount" Type="decimal" Precision="18" Scale="0" />
           <Property Name="date_created" Type="date" />
-          <Property Name="confirmation_number" Type="varchar" MaxLength="50" />
           <Property Name="user_id" Type="int" />
           <Property Name="payment_id" Type="int" />
+          <Property Name="total_sum" Type="float" />
         </EntityType>
         <EntityType Name="Payments">
           <Key>
@@ -127,12 +126,6 @@
           <Property Name="phone_number" Type="varchar" MaxLength="50" />
           <Property Name="city_region" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'DeluxeShopping.dbo.ItemAmountCalculation' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="ItemAmountCalculation">
-          <Property Name="item_id" Type="int" />
-          <Property Name="TOTALAMOUNT" Type="int" />
-        </EntityType>-->
         <Association Name="FK_order_details_orders">
           <End Role="orders" Type="Self.orders" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -297,23 +290,22 @@ warning 6013: The table/view 'DeluxeShopping.dbo.ItemAmountCalculation' does not
           <Property Name="order_prd_qty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="order_prd_price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="prd_id" Type="Int32" />
-          <Property Name="ord_id" Type="Int32" />
           <NavigationProperty Name="order" Relationship="Self.FK_order_details_orders" FromRole="order_details" ToRole="orders" />
+          <Property Name="user_id" Type="Int32" />
         </EntityType>
         <EntityType Name="order">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ordername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="amount" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="date_created" Type="DateTime" Precision="0" />
-          <Property Name="confirmation_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="user_id" Type="Int32" />
           <Property Name="payment_id" Type="Int32" />
           <NavigationProperty Name="order_details" Relationship="Self.FK_order_details_orders" FromRole="orders" ToRole="order_details" />
           <NavigationProperty Name="Payment" Relationship="Self.FK_orders_Payments" FromRole="orders" ToRole="Payments" />
           <NavigationProperty Name="user" Relationship="Self.FK_orders_users" FromRole="orders" ToRole="users" />
+          <Property Name="total_sum" Type="Double" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -564,24 +556,23 @@ warning 6013: The table/view 'DeluxeShopping.dbo.ItemAmountCalculation' does not
           <EntitySetMapping Name="order_details">
             <EntityTypeMapping TypeName="DeluxeShoppingModel.order_details">
               <MappingFragment StoreEntitySet="order_details">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="order_id" ColumnName="order_id" />
                 <ScalarProperty Name="order_date" ColumnName="order_date" />
                 <ScalarProperty Name="order_prd_name" ColumnName="order_prd_name" />
                 <ScalarProperty Name="order_prd_qty" ColumnName="order_prd_qty" />
                 <ScalarProperty Name="order_prd_price" ColumnName="order_prd_price" />
                 <ScalarProperty Name="prd_id" ColumnName="prd_id" />
-                <ScalarProperty Name="ord_id" ColumnName="ord_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="orders">
             <EntityTypeMapping TypeName="DeluxeShoppingModel.order">
               <MappingFragment StoreEntitySet="orders">
+                <ScalarProperty Name="total_sum" ColumnName="total_sum" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ordername" ColumnName="ordername" />
                 <ScalarProperty Name="amount" ColumnName="amount" />
                 <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="confirmation_number" ColumnName="confirmation_number" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="payment_id" ColumnName="payment_id" />
               </MappingFragment>

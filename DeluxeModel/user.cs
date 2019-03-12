@@ -11,7 +11,8 @@ namespace DeluxeModel
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class user
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,6 +25,8 @@ namespace DeluxeModel
         public string name { get; set; }
         public string emails { get; set; }
         public string email { get; set; }
+
+     
         public string passowrds { get; set; }
         public string addresse { get; set; }
         public string phone_number { get; set; }

@@ -7,9 +7,9 @@
       <Diagram DiagramId="a664075a1be9468280da83f200fe5f63" Name="Diagram1">
         <EntityTypeShape EntityType="DeluxeShoppingModel.Brand" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DeluxeShoppingModel.Category" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DeluxeShoppingModel.order_details" Width="1.5" PointX="10.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DeluxeShoppingModel.order" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="DeluxeShoppingModel.Payment" Width="1.5" PointX="5.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeluxeShoppingModel.order_details" Width="2.125" PointX="12.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeluxeShoppingModel.order" Width="1.75" PointX="8.25" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeluxeShoppingModel.Payment" Width="1.5" PointX="10.5" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DeluxeShoppingModel.product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="DeluxeShoppingModel.shopping_cart" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DeluxeShoppingModel.Supplier_Details" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
