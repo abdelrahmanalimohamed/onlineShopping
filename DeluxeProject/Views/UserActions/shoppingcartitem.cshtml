@@ -28,10 +28,13 @@
                 </div>
                 <div class="content">
                     <div class="row">
+                     
+
+
                         <div class="col-md-12 col-lg-8">
                             @foreach (var item in Model)
                             {
-                                <div class="items">
+                                <div class="items" id="itemcontent_">
                                     <div class="product">
                                         <div class="row">
                                             <div class="col-md-3">
@@ -44,22 +47,25 @@
                                                             <div class="product-name">
                                                                 <a href="#">@item.prd_name</a>
                                                                 <div class="product-info">
-                                                                    <div>Display: <span class="value">5 inch</span></div>
-                                                                    <div>RAM: <span class="value">4GB</span></div>
-                                                                    <div>Memory: <span class="value">32GB</span></div>
+                                                                    <div>Description : <span class="value">@item.prd_desc</span></div>
+                                                                    <div>Sold by : <span class="value">@item.supplier.company_name</span></div>
+
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4 quantity">
                                                             <label for="quantity">Quantity:</label>
-                                                            <select class="form-control quantity-input" id="selectqty">
-                                                                <option value="1">1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
+                                                            <select class="form-control quantity-input" id="selectqty" typeof="submit">
+                                                             <option value="@item.ID">1</option>
                                                             </select>
                                                         </div>
                                                         <div class="col-md-3 price">
                                                             <span>$ @item.price</span>
+                                                            <span>
+                                                                @Ajax.ActionLink("Remove", "RemoveItemfromcart", "UserActions", new { id = item.ID }, new AjaxOptions { UpdateTargetId = "itemcontent_", InsertionMode = InsertionMode.Replace, HttpMethod = "DELETE" })
+                                                               
+                                                               
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -72,28 +78,27 @@
                                 </div>
                             }
                         </div>
+           
                         <div class="col-md-12 col-lg-4">
                             <div class="summary">
                                 <h3>Summary</h3>
+                            
+                                    <div class="summary-item"><span class="text">Shipping</span><span class="price">Free Shipping</span></div>
+                                    <div class="summary-item"><span class="text">Total</span><span class="price">$ @ViewBag.TotalSum</span></div>
+                                    <div class="summary-item">
+                                        <span class="text">Payment</span><span class="price">PayPal <input type="checkbox" value="PayPal" id="paypalcheck" class="cccc" /></span>
+                                        <br />
+                                        <span class="price">Cash <input type="checkbox" value="Cash" id="cashcheck" class="cccc" /></span>
 
-
-                                <div class="summary-item"><span class="text">Shipping</span><span class="price">Free Shipping</span></div>
-                                <div class="summary-item"><span class="text">Total</span><span class="price">$ @ViewBag.TotalSum</span></div>
-                                <div class="summary-item">
-                                    <span class="text">Payment</span><span class="price">PayPal <input type="checkbox" value="PayPal" id="paypalcheck" class="cccc"/></span>
-                                    <br />
-                                    <span class="price">Cash <input type="checkbox" value="Cash" id="cashcheck" class="cccc" /></span>
-
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-lg btn-block" id="checkout">Checkout</button>
                                 </div>
-                                <button type="button" class="btn btn-primary btn-lg btn-block" id="checkout">Checkout</button>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-
 
 
 
@@ -105,19 +110,23 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+
     <script type="text/javascript">
         $(document).ready(function () {
             $('input:checkbox').click(function () {
                 $('input:checkbox').not(this).prop('checked', false);
+
             });
 
             var payment_type = $('#cashcheck').val();
             var finaldata = { "payment_type": payment_type };
-
+          
 
             $("#checkout").click(function () {
+                var selecteditem = $('#selectqty').val();
+                alert(selecteditem);
                 
-                 $.ajax({
+                 @*$.ajax({
                     url: '@Url.Action("SaveOrder","UserActions","user")',
                      type: "POST",
                      data: JSON.stringify(finaldata),
@@ -134,7 +143,7 @@
 
 
 
-                });
+                });*@
 
 
 
@@ -150,7 +159,7 @@
 
 
 
-</body>
+    </body>
 
 
 </html>

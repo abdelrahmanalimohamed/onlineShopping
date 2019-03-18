@@ -16,7 +16,7 @@ namespace DeluxeProject
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "UserActions", action = "Home", id = UrlParameter.Optional }
+                defaults: new { controller = "UserActions", action = "SignUp", id = UrlParameter.Optional }
             );
         }
     }

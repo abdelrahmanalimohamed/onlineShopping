@@ -4,25 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a664075a1be9468280da83f200fe5f63" Name="Diagram1">
+      <Diagram DiagramId="c23dc12a730b4a45b1a39b34ad8683c7" Name="Diagram1">
+        <EntityTypeShape EntityType="DeluxeShoppingModel.admin" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DeluxeShoppingModel.Brand" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DeluxeShoppingModel.Category" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DeluxeShoppingModel.order_details" Width="2.125" PointX="12.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DeluxeShoppingModel.order" Width="1.75" PointX="8.25" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DeluxeShoppingModel.Payment" Width="1.5" PointX="10.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeluxeShoppingModel.order_details" Width="1.5" PointX="10.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeluxeShoppingModel.order" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeluxeShoppingModel.Payment" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DeluxeShoppingModel.product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="DeluxeShoppingModel.shopping_cart" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DeluxeShoppingModel.Supplier_Details" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeluxeShoppingModel.shopping_cart" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeluxeShoppingModel.shopping_cart_details" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeluxeShoppingModel.Supplier_Details" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DeluxeShoppingModel.supplier" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DeluxeShoppingModel.sysdiagram" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DeluxeShoppingModel.user" Width="1.5" PointX="5.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeluxeShoppingModel.sysdiagram" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeluxeShoppingModel.user" Width="1.5" PointX="5.75" PointY="5" IsExpanded="true" />
         <AssociationConnector Association="DeluxeShoppingModel.FK_products_Brands" ManuallyRouted="false" />
         <AssociationConnector Association="DeluxeShoppingModel.FK_products_Category" ManuallyRouted="false" />
         <AssociationConnector Association="DeluxeShoppingModel.FK_order_details_orders" ManuallyRouted="false" />
         <AssociationConnector Association="DeluxeShoppingModel.FK_orders_Payments" ManuallyRouted="false" />
         <AssociationConnector Association="DeluxeShoppingModel.FK_orders_users" ManuallyRouted="false" />
         <AssociationConnector Association="DeluxeShoppingModel.FK_products_suppliers" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="DeluxeShoppingModel.shopping_cart_details" Width="1.875" PointX="5.5" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

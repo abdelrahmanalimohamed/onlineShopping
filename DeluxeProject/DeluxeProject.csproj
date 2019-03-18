@@ -48,6 +48,10 @@
     <Reference Include="ASPSnippets.FaceBookAPI">
       <HintPath>..\..\..\Documents\ASPSnippets.FaceBookAPI.dll</HintPath>
     </Reference>
+    <Reference Include="DeluxeModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DeluxeModel\bin\Debug\DeluxeModel.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -152,6 +156,13 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\kertas1-.jpg" />
+    <Content Include="Content\mdb\bootstrap.min.css" />
+    <Content Include="Content\mdb\bootstrap.min.js" />
+    <Content Include="Content\mdb\jquery-3.3.1.min.js" />
+    <Content Include="Content\mdb\mdb.min.css" />
+    <Content Include="Content\mdb\mdb.min.js" />
+    <Content Include="Content\mdb\popper.min.js" />
+    <Content Include="Content\mdb\style.min.css" />
     <Content Include="Content\online-shop-logo-template_59362-86.jpg" />
     <Content Include="Content\shopping-cart.css" />
     <Content Include="Content\Site.css" />
@@ -231,6 +242,7 @@
     <Content Include="Views\UserActions\showitem.cshtml" />
     <Content Include="Views\UserActions\showitemoncart.cshtml" />
     <Content Include="Views\UserActions\shoppingcartitem.cshtml" />
+    <Content Include="Views\UserActions\Demo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -244,12 +256,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DeluxeModel\DeluxeModel.csproj">
-      <Project>{9d3bf3e2-3652-4fcb-823c-fc5db87c8bec}</Project>
-      <Name>DeluxeModel</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

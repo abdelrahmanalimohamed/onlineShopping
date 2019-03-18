@@ -4,7 +4,15 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DeluxeShoppingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DeluxeShoppingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="admins">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="passoword" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Brands">
           <Key>
             <PropertyRef Name="ID" />
@@ -21,8 +29,9 @@
         </EntityType>
         <EntityType Name="order_details">
           <Key>
-            <PropertyRef Name="order_id" />
+            <PropertyRef Name="ID" />
           </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="order_id" Type="int" Nullable="false" />
           <Property Name="prd_id" Type="int" />
           <Property Name="user_id" Type="int" />
@@ -120,6 +129,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
           <Property Name="emails" Type="varchar" MaxLength="50" />
           <Property Name="passowrds" Type="varchar" MaxLength="50" />
           <Property Name="addresse" Type="varchar" MaxLength="50" />
@@ -130,7 +140,7 @@
           <End Role="orders" Type="Self.orders" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="order_details" Type="Self.order_details" Multiplicity="0..1" />
+          <End Role="order_details" Type="Self.order_details" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="orders">
               <PropertyRef Name="ID" />
@@ -223,6 +233,7 @@
           <Parameter Name="companylocation" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="DeluxeShoppingModelStoreContainer">
+          <EntitySet Name="admins" EntityType="Self.admins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Brands" EntityType="Self.Brands" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="order_details" EntityType="Self.order_details" Schema="dbo" store:Type="Tables" />
@@ -260,10 +271,19 @@
             <End Role="products" EntitySet="products" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DeluxeShoppingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="passoword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="Brand">
           <Key>
             <PropertyRef Name="ID" />
@@ -282,16 +302,17 @@
         </EntityType>
         <EntityType Name="order_details">
           <Key>
-            <PropertyRef Name="order_id" />
+            <PropertyRef Name="ID" />
           </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="order_id" Type="Int32" Nullable="false" />
-          <Property Name="order_date" Type="DateTime" Precision="0" />
+          <Property Name="prd_id" Type="Int32" />
+          <Property Name="user_id" Type="Int32" />
           <Property Name="order_prd_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="order_prd_qty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="order_prd_price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="prd_id" Type="Int32" />
+          <Property Name="order_date" Type="DateTime" Precision="0" />
           <NavigationProperty Name="order" Relationship="Self.FK_order_details_orders" FromRole="order_details" ToRole="orders" />
-          <Property Name="user_id" Type="Int32" />
         </EntityType>
         <EntityType Name="order">
           <Key>
@@ -302,10 +323,10 @@
           <Property Name="date_created" Type="DateTime" Precision="0" />
           <Property Name="user_id" Type="Int32" />
           <Property Name="payment_id" Type="Int32" />
+          <Property Name="total_sum" Type="Double" />
           <NavigationProperty Name="order_details" Relationship="Self.FK_order_details_orders" FromRole="orders" ToRole="order_details" />
           <NavigationProperty Name="Payment" Relationship="Self.FK_orders_Payments" FromRole="orders" ToRole="Payments" />
           <NavigationProperty Name="user" Relationship="Self.FK_orders_users" FromRole="orders" ToRole="users" />
-          <Property Name="total_sum" Type="Double" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -340,6 +361,16 @@
           <Property Name="order_id" Type="Int32" />
           <Property Name="count" Type="Int32" />
           <Property Name="total_amount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="shopping_cart_details">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="item_id" Type="Int32" />
+          <Property Name="order_id" Type="Int32" />
+          <Property Name="item_price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="item_amount" Type="Int32" />
         </EntityType>
         <EntityType Name="Supplier_Details">
           <Key>
@@ -380,6 +411,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="emails" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="passowrds" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="addresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -419,7 +451,7 @@
           <End Role="orders" Type="Self.order" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="order_details" Type="Self.order_details" Multiplicity="0..1" />
+          <End Role="order_details" Type="Self.order_details" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="orders">
               <PropertyRef Name="ID" />
@@ -472,6 +504,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DeluxeShoppingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="admins" EntityType="Self.admin" />
           <EntitySet Name="Brands" EntityType="Self.Brand" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="order_details" EntityType="Self.order_details" />
@@ -479,6 +512,7 @@
           <EntitySet Name="Payments" EntityType="Self.Payment" />
           <EntitySet Name="products" EntityType="Self.product" />
           <EntitySet Name="shopping_cart" EntityType="Self.shopping_cart" />
+          <EntitySet Name="shopping_cart_details" EntityType="Self.shopping_cart_details" />
           <EntitySet Name="Supplier_Details" EntityType="Self.Supplier_Details" />
           <EntitySet Name="suppliers" EntityType="Self.supplier" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
@@ -508,10 +542,10 @@
             <End Role="products" EntitySet="products" />
           </AssociationSet>
           <FunctionImport Name="insertbrand">
-          <Parameter Name="brndname" Mode="In" Type="String" />
+            <Parameter Name="brndname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="insertcategory">
-          <Parameter Name="catname" Mode="In" Type="String" />
+            <Parameter Name="catname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="insertsupplier">
             <Parameter Name="companyname" Mode="In" Type="String" />
@@ -519,24 +553,22 @@
             <Parameter Name="companymail" Mode="In" Type="String" />
             <Parameter Name="companylocation" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="shopping_cart_details" EntityType="DeluxeShoppingModel.shopping_cart_details" />
         </EntityContainer>
-        <EntityType Name="shopping_cart_details">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="item_id" Type="Int32" />
-          <Property Name="order_id" Type="Int32" />
-          <Property Name="item_price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="item_amount" Type="Int32" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DeluxeShoppingModelStoreContainer" CdmEntityContainer="DeluxeShoppingEntities">
+          <EntitySetMapping Name="admins">
+            <EntityTypeMapping TypeName="DeluxeShoppingModel.admin">
+              <MappingFragment StoreEntitySet="admins">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="passoword" ColumnName="passoword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Brands">
             <EntityTypeMapping TypeName="DeluxeShoppingModel.Brand">
               <MappingFragment StoreEntitySet="Brands">
@@ -556,25 +588,26 @@
           <EntitySetMapping Name="order_details">
             <EntityTypeMapping TypeName="DeluxeShoppingModel.order_details">
               <MappingFragment StoreEntitySet="order_details">
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="order_id" ColumnName="order_id" />
-                <ScalarProperty Name="order_date" ColumnName="order_date" />
+                <ScalarProperty Name="prd_id" ColumnName="prd_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="order_prd_name" ColumnName="order_prd_name" />
                 <ScalarProperty Name="order_prd_qty" ColumnName="order_prd_qty" />
                 <ScalarProperty Name="order_prd_price" ColumnName="order_prd_price" />
-                <ScalarProperty Name="prd_id" ColumnName="prd_id" />
+                <ScalarProperty Name="order_date" ColumnName="order_date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="orders">
             <EntityTypeMapping TypeName="DeluxeShoppingModel.order">
               <MappingFragment StoreEntitySet="orders">
-                <ScalarProperty Name="total_sum" ColumnName="total_sum" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="amount" ColumnName="amount" />
                 <ScalarProperty Name="date_created" ColumnName="date_created" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+                <ScalarProperty Name="total_sum" ColumnName="total_sum" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -608,6 +641,17 @@
                 <ScalarProperty Name="order_id" ColumnName="order_id" />
                 <ScalarProperty Name="count" ColumnName="count" />
                 <ScalarProperty Name="total_amount" ColumnName="total_amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shopping_cart_details">
+            <EntityTypeMapping TypeName="DeluxeShoppingModel.shopping_cart_details">
+              <MappingFragment StoreEntitySet="shopping_cart_details">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="item_price" ColumnName="item_price" />
+                <ScalarProperty Name="item_amount" ColumnName="item_amount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -651,6 +695,7 @@
               <MappingFragment StoreEntitySet="users">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="emails" ColumnName="emails" />
                 <ScalarProperty Name="passowrds" ColumnName="passowrds" />
                 <ScalarProperty Name="addresse" ColumnName="addresse" />
@@ -662,17 +707,6 @@
           <FunctionImportMapping FunctionImportName="insertbrand" FunctionName="DeluxeShoppingModel.Store.insertbrand" />
           <FunctionImportMapping FunctionImportName="insertcategory" FunctionName="DeluxeShoppingModel.Store.insertcategory" />
           <FunctionImportMapping FunctionImportName="insertsupplier" FunctionName="DeluxeShoppingModel.Store.insertsupplier" />
-          <EntitySetMapping Name="shopping_cart_details">
-            <EntityTypeMapping TypeName="DeluxeShoppingModel.shopping_cart_details">
-              <MappingFragment StoreEntitySet="shopping_cart_details">
-                <ScalarProperty Name="item_amount" ColumnName="item_amount" />
-                <ScalarProperty Name="item_price" ColumnName="item_price" />
-                <ScalarProperty Name="order_id" ColumnName="order_id" />
-                <ScalarProperty Name="item_id" ColumnName="item_id" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

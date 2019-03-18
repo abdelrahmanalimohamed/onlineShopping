@@ -1,146 +1,137 @@
 ﻿
 @{
     ViewBag.Title = "Login";
-    Layout = "~/Views/Shared/_UserMaster.cshtml";
+    Layout = null;
 }
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
 
 
-<style type="text/css">
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-    }
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-    * {
-        box-sizing: border-box;
-    }
+<link href="~/Content/mdb/bootstrap.min.css" rel="stylesheet">
 
+<link href="~/Content/mdb/mdb.min.css" rel="stylesheet">
 
-    .container {
-        position: relative;
-        border-radius: 5px;
-        background-color: #f2f2f2;
-        padding: 20px 0 30px 0;
-    }
+<link href="~/Content/mdb/style.min.css" rel="stylesheet">
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Deluxe Shopping</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .login-form {
+            width: 385px;
+            margin: 30px auto;
+        }
 
-    input,
-    .btn {
-        width: 100%;
-        padding: 12px;
-        border: none;
-        border-radius: 4px;
-        margin: 5px 0;
-        opacity: 0.85;
-        display: inline-block;
-        font-size: 17px;
-        line-height: 20px;
-        text-decoration: none;
-    }
+            .login-form form {
+                margin-bottom: 15px;
+                background: #f7f7f7;
+                box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+                padding: 30px;
+            }
 
-        input:hover,
-        .btn:hover {
+            .login-form h2 {
+                margin: 0 0 15px;
+            }
+
+        .form-control, .login-btn {
+            min-height: 38px;
+            border-radius: 2px;
+        }
+
+        .input-group-addon .fa {
+            font-size: 18px;
+        }
+
+        .login-btn {
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .social-btn .btn {
+            border: none;
+            margin: 10px 3px 0;
             opacity: 1;
         }
 
-    .fb {
-        background-color: #3B5998;
-        color: white;
-    }
+            .social-btn .btn:hover {
+                opacity: 0.9;
+            }
 
-    .twitter {
-        background-color: #55ACEE;
-        color: white;
-    }
-
-    .google {
-        background-color: #dd4b39;
-        color: white;
-    }
-
-
-    input[type=submit] {
-        background-color: #4CAF50;
-        color: white;
-        cursor: pointer;
-    }
-
-        input[type=submit]:hover {
-            background-color: #45a049;
+        .social-btn .btn-primary {
+            background: #507cc0;
         }
 
-
-    .col {
-        float: none;
-        width: 50%;
-        margin: auto;
-        padding: 0 50px;
-        margin-top: 6px;
-    }
-
-    .row:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-
-
-    .vl {
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%);
-        border: 2px solid #ddd;
-        height: 175px;
-    }
-
-
-    .vl-innertext {
-        position: absolute;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #f1f1f1;
-        border: 1px solid #ccc;
-        border-radius: 50%;
-        padding: 8px 10px;
-    }
-
-
-    .hide-md-lg {
-        display: none;
-    }
-
-    .bottom-container {
-        text-align: center;
-        background-color: #666;
-        border-radius: 0px 0px 4px 4px;
-    }
-
-    @@media screen and (max-width: 650px) {
-        .col {
-            width: 100%;
-            margin-top: 0;
+        .social-btn .btn-info {
+            background: #64ccf1;
         }
 
-        .vl {
-            display: none;
+        .social-btn .btn-danger {
+            background: #df4930;
         }
 
-        .hide-md-lg {
-            display: block;
+        .or-seperator {
+            margin-top: 20px;
             text-align: center;
+            border-top: 1px solid #ccc;
         }
-    }
-</style>
 
-
-<div class="col">
-    
-       <img class="img-responsive" src="~/Content/kertas1-.jpg" />
-
-    <input type="text" placeholder="username" required />
-    <input type="password" placeholder="password" required />
-
-    <input type="submit" value="Login" />
-</div>
+            .or-seperator i {
+                padding: 0 10px;
+                background: #f7f7f7;
+                position: relative;
+                top: -11px;
+                z-index: 1;
+            }
+    </style>
+</head>
+<body>
+    <div class="login-form">
+        <form>
+            <h2 class="text-center">Sign in</h2>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" name="username" placeholder="Username" required="required">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary login-btn btn-block">Sign in</button>
+            </div>
+            <div class="clearfix" hidden>
+                <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
+                <a href="#" class="pull-right">Forgot Password?</a>
+            </div>
+   
+         
+        </form>
+        <p class="text-center text-muted small">Don't have an account? <a href="@Url.Action("SignUp","UserActions")">Sign up here!</a></p>
+    </div>
+</body>
+</html>
 

@@ -12,17 +12,10 @@ namespace DeluxeModel
     using System;
     using System.Collections.Generic;
     
-    public partial class order_details
+    public partial class admin
     {
         public int ID { get; set; }
-        public int order_id { get; set; }
-        public Nullable<int> prd_id { get; set; }
-        public Nullable<int> user_id { get; set; }
-        public string order_prd_name { get; set; }
-        public string order_prd_qty { get; set; }
-        public string order_prd_price { get; set; }
-        public Nullable<System.DateTime> order_date { get; set; }
-    
-        public virtual order order { get; set; }
+        public string username { get; set; }
+        public string passoword { get; set; }
     }
 }

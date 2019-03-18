@@ -27,6 +27,7 @@ namespace DeluxeModel
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<admin> admins { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<order_details> order_details { get; set; }
@@ -34,11 +35,11 @@ namespace DeluxeModel
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<product> products { get; set; }
         public virtual DbSet<shopping_cart> shopping_cart { get; set; }
+        public virtual DbSet<shopping_cart_details> shopping_cart_details { get; set; }
         public virtual DbSet<Supplier_Details> Supplier_Details { get; set; }
         public virtual DbSet<supplier> suppliers { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<user> users { get; set; }
-        public virtual DbSet<shopping_cart_details> shopping_cart_details { get; set; }
     
         public virtual int insertbrand(string brndname)
         {

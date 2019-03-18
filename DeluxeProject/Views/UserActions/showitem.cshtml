@@ -1,69 +1,555 @@
 ﻿@model IEnumerable<DeluxeModel.product>
+
 @{
     ViewBag.Title = "showitem";
-    Layout = "~/Views/Shared/_UserMaster.cshtml";
+    Layout = null;
 }
-<link rel="stylesheet" href="style.css">
-<link href="http://www.professorcloud.com/styles/cloud-zoom.css" rel="stylesheet" type="text/css">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.js"></script>
-<script type="text/JavaScript" src="http://www.professorcloud.com/js/cloud-zoom.1.0.2.js"></script>
-<script src="~/Scripts/app.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    @@import url(https://fonts.googleapis.com/css?family=Rubik:300,400,500,700);
+
+    body {
+        font-family: Rubik,sans-serif;
+        position: relative;
+        font-weight: 400;
+        font-size: 15px
+    }
+
+    ul {
+        padding: 0;
+        margin: 0
+    }
+
+    li {
+        list-style: none
+    }
+
+    a:focus, a:hover {
+        text-decoration: none;
+        -webkit-transition: .3s ease;
+        -o-transition: .3s ease;
+        transition: .3s ease
+    }
+
+    a:focus {
+        outline: 0
+    }
+
+    img {
+        max-width: 100%
+    }
+
+    p {
+        font-size: 16px;
+        line-height: 30px;
+        color: #898b96;
+        font-weight: 300
+    }
+
+    h4 {
+        font-family: Rubik,sans-serif;
+        margin: 0;
+        font-weight: 400;
+        padding: 0;
+        color: #363940
+    }
+
+    a {
+        color: #5867dd
+    }
+
+    .no-padding {
+        padding: 0 !important
+    }
+
+    .go_top {
+        line-height: 40px;
+        cursor: pointer;
+        width: 40px;
+        background: #5867dd;
+        color: #fff;
+        position: fixed;
+        -webkit-box-shadow: 0 4px 4px rgba(0,0,0,.1);
+        box-shadow: 0 4px 4px rgba(0,0,0,.1);
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        right: -webkit-calc((100% - 1140px)/ 2);
+        right: calc((100% - 1140px)/ 2);
+        z-index: 111;
+        bottom: 80px;
+        text-align: center
+    }
+
+        .go_top span {
+            display: inline-block
+        }
+
+    .footer-big {
+        padding: 105px 0 65px 0
+    }
+
+        .footer-big .footer-widget {
+            margin-bottom: 40px
+        }
+
+    .footer--light {
+        background: #e7e8ed
+    }
+
+    .footer-big .footer-menu ul li a, .footer-big p, .footer-big ul li {
+        color: #898b96
+    }
+
+    .footer-menu {
+        padding-left: 48px
+    }
+
+        .footer-menu ul li a {
+            font-size: 15px;
+            line-height: 32px;
+            -webkit-transition: .3s;
+            -o-transition: .3s;
+            transition: .3s
+        }
+
+            .footer-menu ul li a:hover {
+                color: #5867dd
+            }
+
+    .footer-menu--1 {
+        width: 100%
+    }
+
+    .footer-widget-title {
+        line-height: 42px;
+        margin-bottom: 10px;
+        font-size: 18px
+    }
+
+    .mini-footer {
+        background: #192027;
+        text-align: center;
+        padding: 32px 0
+    }
+
+        .mini-footer p {
+            margin: 0;
+            line-height: 26px;
+            font-size: 15px;
+            color: #999
+        }
+
+            .mini-footer p a {
+                color: #5867dd
+            }
+
+                .mini-footer p a:hover {
+                    color: #34bfa3
+                }
+
+    .widget-about img {
+        display: block;
+        margin-bottom: 30px
+    }
+
+    .widget-about p {
+        font-weight: 400
+    }
+
+    .widget-about .contact-details {
+        margin: 30px 0 0 0
+    }
+
+        .widget-about .contact-details li {
+            margin-bottom: 10px
+        }
+
+            .widget-about .contact-details li:last-child {
+                margin-bottom: 0
+            }
+
+            .widget-about .contact-details li span {
+                padding-right: 12px
+            }
+
+            .widget-about .contact-details li a {
+                color: #5867dd
+            }
+
+    @@media (max-width:991px) {
+        .footer-menu {
+            padding-left: 0
+        }
+    }
+</style>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Deluxe Shopping</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+
+    <link href="~/Content/mdb/bootstrap.min.css" rel="stylesheet">
+
+    <link href="~/Content/mdb/mdb.min.css" rel="stylesheet">
+
+    <link href="~/Content/mdb/style.min.css" rel="stylesheet">
+    <style type="text/css">
+        html,
+        body,
+        header,
+        .carousel {
+            height: 60vh;
+        }
+
+        @@media (max-width: 740px) {
+
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+
+        @@media (min-width: 800px) and (max-width: 850px) {
+
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+        <div class="container">
+
+            <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
+                <strong class="blue-text">Deluxe Shopping</strong>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link waves-effect" href="#">
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/getting-started/download/"
+                           target="_blank">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="https://mdbootstrap.com/education/bootstrap/" target="_blank">
+                            Customer Service
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav nav-flex-icons">
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="@Url.Action("shoppingcartitem","UserActions")">
+                            <span class="badge red z-depth-1 mr-1">    @Session["itemcount"] </span>
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.facebook.com/mdbootstrap" class="nav-link waves-effect" target="_blank">
+                            <i class="glyphicon glyphicon-log-in"></i>
+                            Login
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://twitter.com/MDBootstrap" class="nav-link waves-effect" target="_blank">
+                            <i class=""></i>
+                            Sign-Up
+                        </a>
+                    </li>
+                    <li class="nav-item" hidden>
+                        <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="nav-link border border-light rounded waves-effect"
+                           target="_blank">
+                            <i class="fab fa-github mr-2"></i>MDB GitHub
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="mt-5 pt-4">
+        <div class="container dark-grey-text mt-5">
+            @foreach (var item in Model)
+            {
+                <div class="row wow fadeIn">
+
+                    <div class="col-md-6 mb-4">
+
+                        <img src="~/App_File/Images/@item.prd_img" class="img-fluid" alt="">
+
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+
+
+                        <div class="p-4">
 
 
 
-@foreach (var item in Model)
-{
-    <table>
-        <tr>
-            <td>
-                <img src="~/App_File/Images/@item.prd_img" class="img-responsive" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span>
-                    <h1>Description</h1>
-                    @item.prd_desc
-                </span>
-                <br />
-                <span>
-                    <h1>Quantity</h1>
-                    @item.prd_quantity
-                </span>
-            </td>
-        </tr>
-    </table>
+                            <p class="lead">
+                                <span class="mr-1">
+                                    <del>@item.price</del>
+                                </span>
+
+                            </p>
+
+                            <p class="lead font-weight-bold">Description</p>
+                            <p>
+                                @item.prd_desc
+                            </p>
+
+                            <form class="d-flex justify-content-left">
+                                <!-- Default input -->
+                                <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
+                                <button class="btn btn-primary btn-md my-0 p" type="button" id="btnaddtocart">
+                                    Add to cart
+                                    <i class="fas fa-shopping-cart ml-1"></i>
+                                </button>
+
+                            </form>
+
+                        </div>
 
 
-}
+                    </div>
 
-    <div class="float-md-right">
-        <button href="#" class="btn btn-info btn-lg" id="btnaddtocart">
-            <span class="glyphicon glyphicon-shopping-cart"></span> Add to shopping cart
-        </button>
-
-        <a href="@Url.Action("shoppingcartitem","UserActions")" class="btn btn-default btn-lg">
-            <span class="glyphicon glyphicon-send"></span> Processed To checkOut
-        </a>
-
-    </div>
+                </div>
+            }
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+            <hr>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript">
+            <div class="row d-flex justify-content-center wow fadeIn">
+
+
+                <div class="col-md-6 text-center">
+
+                    <h4 class="my-4 h4">Related Products</h4>
+
+                    <p>
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+            <div class="row wow fadeIn">
+                @foreach (var item in ViewBag.HoldingItems)
+                {
+                    <div class="col-lg-4 col-md-12 mb-4">
+
+                        <img src="~/App_File/Images/@item.prd_img" class="img-fluid" alt="">
+
+                    </div>
+
+                }
+
+                <!--Grid column-->
+
+
+            </div>
+            <!--Grid row-->
+
+        </div>
+    </main>
+
+    <footer class="page-footer text-center font-small mt-4 wow fadeIn">
+        <div class="text-center">
+
+            <div class="footer-big">
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-3 col-sm-4">
+                            <div class="footer-widget">
+                                <div class="footer-menu footer-menu--1">
+                                    <h4 class="footer-widget-title">Popular Category</h4>
+                                    <ul>
+                                        <li>
+                                            <a href="#">Wordpress</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Plugins</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Joomla Template</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Admin Template</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">HTML Template</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-3 col-sm-4">
+                            <div class="footer-widget">
+                                <div class="footer-menu">
+                                    <h4 class="footer-widget-title">Our Company</h4>
+                                    <ul>
+                                        <li>
+                                            <a href="#">About Us</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">How It Works</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Affiliates</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Testimonials</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Contact Us</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Plan & Pricing</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Blog</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-3 col-sm-4">
+                            <div class="footer-widget">
+                                <div class="footer-menu no-padding">
+                                    <h4 class="footer-widget-title">Help Support</h4>
+                                    <ul>
+                                        <li>
+                                            <a href="#">Support Forum</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Terms &amp; Conditions</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Support Policy</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Refund Policy</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">FAQs</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Buyers Faq</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Sellers Faq</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="mini-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright-text">
+                                <p>
+                                    © 2019
+                                    <a href="#">OnlineShopping</a>. All rights reserved. Created by
+                                    <a href="#">Abdelrahman Ali</a>
+                                </p>
+                            </div>
+
+                            <div class="go_top">
+                                <span class="icon-arrow-up"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script type="text/javascript" src="~/Content/mdb/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="~/Content/mdb/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="~/Content/mdb/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="~/Content/mdb/mdb.min.js"></script>
+    <!-- Initializations -->
+    <script type="text/javascript">
+        // Animations initialization
+        new WOW().init();
+
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.js"></script>
+    <script type="text/JavaScript" src="http://www.professorcloud.com/js/cloud-zoom.1.0.2.js"></script>
+    <script src="~/Scripts/app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
       $(document).ready(function () {
 
           var selected_id = @Session["itemid"];
           var id = { "id": selected_id }
           $("#btnaddtocart").click(function () {
+          
 
             $.ajax({
                 url:'@Url.Action("AddtoCart", "UserActions","User")',
@@ -83,11 +569,14 @@
           });
 
 
-     
+
 
 
         });
-</script>
+    </script>
 
+</body>
+
+</html>
 
 

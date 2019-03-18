@@ -14,6 +14,12 @@ namespace DeluxeModel
     
     public partial class order
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public order()
+        {
+            this.order_details = new HashSet<order_details>();
+        }
+    
         public int ID { get; set; }
         public Nullable<decimal> amount { get; set; }
         public Nullable<System.DateTime> date_created { get; set; }
@@ -21,7 +27,8 @@ namespace DeluxeModel
         public Nullable<int> payment_id { get; set; }
         public Nullable<double> total_sum { get; set; }
     
-        public virtual order_details order_details { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<order_details> order_details { get; set; }
         public virtual Payment Payment { get; set; }
         public virtual user user { get; set; }
     }

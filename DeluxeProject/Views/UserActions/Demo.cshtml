@@ -1,0 +1,984 @@
+﻿
+@{
+    ViewBag.Title = "Demo";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        .login-form {
+            width: 385px;
+            margin: 30px auto;
+        }
+
+            .login-form form {
+                margin-bottom: 15px;
+                background: #f7f7f7;
+                box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+                padding: 30px;
+            }
+
+            .login-form h2 {
+                margin: 0 0 15px;
+            }
+
+        .form-control, .login-btn {
+            min-height: 38px;
+            border-radius: 2px;
+        }
+
+        .input-group-addon .fa {
+            font-size: 18px;
+        }
+
+        .login-btn {
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .social-btn .btn {
+            border: none;
+            margin: 10px 3px 0;
+            opacity: 1;
+        }
+
+            .social-btn .btn:hover {
+                opacity: 0.9;
+            }
+
+        .social-btn .btn-primary {
+            background: #507cc0;
+        }
+
+        .social-btn .btn-info {
+            background: #64ccf1;
+        }
+
+        .social-btn .btn-danger {
+            background: #df4930;
+        }
+
+        .or-seperator {
+            margin-top: 20px;
+            text-align: center;
+            border-top: 1px solid #ccc;
+        }
+
+            .or-seperator i {
+                padding: 0 10px;
+                background: #f7f7f7;
+                position: relative;
+                top: -11px;
+                z-index: 1;
+            }
+
+
+        body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing:}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* Add a background color when the inputs get focus */
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+
+}
+
+/* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: absolute; /* Stay in place */
+        
+            left: 0;
+            top: 0;
+          
+            overflow: visible; /* Enable scroll if needed */
+            background-color: rgba(255, 255, 255, .4);
+        }
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+   /* Could be more or less, depending on screen size */
+}
+
+/* Style the horizontal ruler */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+     width: 100%;
+  }
+}
+
+
+
+
+        html,
+        body,
+        header,
+        .carousel {
+            height: 60vh;
+        }
+
+        @@media (max-width: 740px) {
+
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+
+        @@media (min-width: 800px) and (max-width: 850px) {
+
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+
+        @@import url(https://fonts.googleapis.com/css?family=Rubik:300,400,500,700);
+
+        body {
+            font-family: Rubik,sans-serif;
+            position: relative;
+            font-weight: 400;
+            font-size: 15px
+        }
+
+        ul {
+            padding: 0;
+            margin: 0
+        }
+
+        li {
+            list-style: none
+        }
+
+        a:focus, a:hover {
+            text-decoration: none;
+            -webkit-transition: .3s ease;
+            -o-transition: .3s ease;
+            transition: .3s ease
+        }
+
+        a:focus {
+            outline: 0
+        }
+
+        img {
+            max-width: 100%
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 30px;
+            color: #898b96;
+            font-weight: 300
+        }
+
+        h4 {
+            font-family: Rubik,sans-serif;
+            margin: 0;
+            font-weight: 400;
+            padding: 0;
+            color: #363940
+        }
+
+        a {
+            color: #5867dd
+        }
+
+        .no-padding {
+            padding: 0 !important
+        }
+
+        .go_top {
+            line-height: 40px;
+            cursor: pointer;
+            width: 40px;
+            background: #5867dd;
+            color: #fff;
+            position: fixed;
+            -webkit-box-shadow: 0 4px 4px rgba(0,0,0,.1);
+            box-shadow: 0 4px 4px rgba(0,0,0,.1);
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            right: -webkit-calc((100% - 1140px)/ 2);
+            right: calc((100% - 1140px)/ 2);
+            z-index: 111;
+            bottom: 80px;
+            text-align: center
+        }
+
+            .go_top span {
+                display: inline-block
+            }
+
+        .footer-big {
+            padding: 105px 0 65px 0
+        }
+
+            .footer-big .footer-widget {
+                margin-bottom: 40px
+            }
+
+        .footer--light {
+            background: #e7e8ed
+        }
+
+        .footer-big .footer-menu ul li a, .footer-big p, .footer-big ul li {
+            color: #898b96
+        }
+
+        .footer-menu {
+            padding-left: 48px
+        }
+
+            .footer-menu ul li a {
+                font-size: 15px;
+                line-height: 32px;
+                -webkit-transition: .3s;
+                -o-transition: .3s;
+                transition: .3s
+            }
+
+                .footer-menu ul li a:hover {
+                    color: #5867dd
+                }
+
+        .footer-menu--1 {
+            width: 100%
+        }
+
+        .footer-widget-title {
+            line-height: 42px;
+            margin-bottom: 10px;
+            font-size: 18px
+        }
+
+        .mini-footer {
+            background: #192027;
+            text-align: center;
+            padding: 32px 0
+        }
+
+            .mini-footer p {
+                margin: 0;
+                line-height: 26px;
+                font-size: 15px;
+                color: #999
+            }
+
+                .mini-footer p a {
+                    color: #5867dd
+                }
+
+                    .mini-footer p a:hover {
+                        color: #34bfa3
+                    }
+
+        .widget-about img {
+            display: block;
+            margin-bottom: 30px
+        }
+
+        .widget-about p {
+            font-weight: 400
+        }
+
+        .widget-about .contact-details {
+            margin: 30px 0 0 0
+        }
+
+            .widget-about .contact-details li {
+                margin-bottom: 10px
+            }
+
+                .widget-about .contact-details li:last-child {
+                    margin-bottom: 0
+                }
+
+                .widget-about .contact-details li span {
+                    padding-right: 12px
+                }
+
+                .widget-about .contact-details li a {
+                    color: #5867dd
+                }
+
+        @@media (max-width:991px) {
+            .footer-menu {
+                padding-left: 0
+            }
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Deluxe Shopping</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+
+    <link href="~/Content/mdb/bootstrap.min.css" rel="stylesheet">
+
+    <link href="~/Content/mdb/mdb.min.css" rel="stylesheet">
+
+    <link href="~/Content/mdb/style.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+
+
+
+        <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
+
+        <div class="container">
+
+            <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
+                <strong class="blue-text">Deluxe Shopping</strong>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link waves-effect" href="#">
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/getting-started/download/"
+                           target="_blank">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="https://mdbootstrap.com/education/bootstrap/" target="_blank">
+                            Customer Service
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav nav-flex-icons">
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect">
+                            <span class="badge red z-depth-1 mr-1">  </span>
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link waves-effect" onclick="document.getElementById('id01').style.display='block'">
+                            <i class="glyphicon glyphicon-log-in"></i>
+                            Login
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link waves-effect" target="_blank">
+                            <i class=""></i>
+                            Sign-Up
+                        </a>
+                    </li>
+                    <li class="nav-item" hidden>
+                        <a href="" class="nav-link border border-light rounded waves-effect"
+                           target="_blank">
+                            <i class="fab fa-github mr-2"></i>MDB GitHub
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+        <div class="modal " id="id01">
+            <form class="container">
+                <h2 class="text-center">Sign in</h2>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input type="text" class="form-control" name="username" placeholder="Username" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary login-btn btn-block">Sign in</button>
+                </div>
+                <div class="clearfix" hidden>
+                    <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
+                    <a href="#" class="pull-right">Forgot Password?</a>
+                </div>
+
+
+            </form>
+            <p class="text-center text-muted small">Don't have an account? <a href="@Url.Action("SignUp","UserActions")">Sign up here!</a></p>
+        </div>
+  
+    <div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel">
+
+
+
+        <div class="carousel-inner" role="listbox">
+
+            <div class="carousel-item active">
+                <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%282%29.jpg'); background-repeat: no-repeat; background-size: cover;">
+
+                    <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
+
+                        <div class="text-center white-text mx-5 wow fadeIn">
+                            <h1 class="mb-4">
+                                <strong></strong>
+                            </h1>
+                            <p>
+                                <strong></strong>
+                            </p>
+                            <p class="mb-4 d-none d-md-block">
+                                <strong>
+
+                                </strong>
+                            </p>
+                            <a target="_blank" href="#" class="">
+
+
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <main>
+        <div class="container">
+
+            <!--Navbar-->
+            <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
+
+                <!-- Navbar brand -->
+                <span class="navbar-brand">Categories:</span>
+
+                <!-- Collapse button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                        aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Collapsible content -->
+                <div class="collapse navbar-collapse" id="basicExampleNav">
+
+                    <!-- Links -->
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">
+                                All
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Shirts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Sport wears</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Outwears</a>
+                        </li>
+
+                    </ul>
+                    <!-- Links -->
+
+                    <form class="form-inline">
+                        <div class="md-form my-0">
+                            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                        </div>
+                    </form>
+                </div>
+                <!-- Collapsible content -->
+
+            </nav>
+            <!--/.Navbar-->
+            <!--Section: Products v.3-->
+            <section class="text-center mb-4">
+
+                <!--Grid row-->
+                <div class="row wow fadeIn">
+
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4">
+
+                        <!--Card-->
+                        <div class="card">
+
+                            <!--Card image-->
+                            <div class="view overlay">
+                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"
+                                     alt="">
+                                <a>
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <!--Card image-->
+                            <!--Card content-->
+                            <div class="card-body text-center">
+                                <!--Category & Title-->
+                                <a href="" class="grey-text">
+                                    <h5>Shirt</h5>
+                                </a>
+                                <h5>
+                                    <strong>
+                                        <a href="" class="dark-grey-text">
+                                            Denim shirt
+                                            <span class="badge badge-pill danger-color">NEW</span>
+                                        </a>
+                                    </strong>
+                                </h5>
+
+                                <h4 class="font-weight-bold blue-text">
+                                    <strong>120$</strong>
+                                </h4>
+
+                            </div>
+                            <!--Card content-->
+
+                        </div>
+                        <!--Card-->
+
+                    </div>
+
+                    <!--Fourth column-->
+
+                </div>
+                <!--Grid row-->
+                <!--Grid row-->
+                <div class="row wow fadeIn">
+
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4">
+
+                        <!--Card-->
+                        <div class="card">
+
+                            <!--Card image-->
+                            <div class="view overlay">
+                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13.jpg" class="card-img-top"
+                                     alt="">
+                                <a>
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <!--Card image-->
+                            <!--Card content-->
+                            <div class="card-body text-center">
+                                <!--Category & Title-->
+                                <a href="" class="grey-text">
+                                    <h5>Shirt</h5>
+                                </a>
+                                <h5>
+                                    <strong>
+                                        <a href="" class="dark-grey-text">
+                                            Denim shirt
+                                            <span class="badge badge-pill danger-color">NEW</span>
+                                        </a>
+                                    </strong>
+                                </h5>
+
+                                <h4 class="font-weight-bold blue-text">
+                                    <strong>120$</strong>
+                                </h4>
+
+                            </div>
+                            <!--Card content-->
+
+                        </div>
+                        <!--Card-->
+
+                    </div>
+                    <!--Grid column-->
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4">
+
+                        <!--Card-->
+                        <div class="card">
+
+                            <!--Card image-->
+                            <div class="view overlay">
+                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14.jpg" class="card-img-top"
+                                     alt="">
+                                <a>
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <!--Card image-->
+                            <!--Card content-->
+                            <div class="card-body text-center">
+                                <!--Category & Title-->
+                                <a href="" class="grey-text">
+                                    <h5>Sport wear</h5>
+                                </a>
+                                <h5>
+                                    <strong>
+                                        <a href="" class="dark-grey-text">Sweatshirt</a>
+                                    </strong>
+                                </h5>
+
+                                <h4 class="font-weight-bold blue-text">
+                                    <strong>139$</strong>
+                                </h4>
+
+                            </div>
+                            <!--Card content-->
+
+                        </div>
+                        <!--Card-->
+
+                    </div>
+                    <!--Grid column-->
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4">
+
+                        <!--Card-->
+                        <div class="card">
+
+                            <!--Card image-->
+                            <div class="view overlay">
+                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg" class="card-img-top"
+                                     alt="">
+                                <a>
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <!--Card image-->
+                            <!--Card content-->
+                            <div class="card-body text-center">
+                                <!--Category & Title-->
+                                <a href="" class="grey-text">
+                                    <h5>Sport wear</h5>
+                                </a>
+                                <h5>
+                                    <strong>
+                                        <a href="" class="dark-grey-text">
+                                            Grey blouse
+                                            <span class="badge badge-pill primary-color">bestseller</span>
+                                        </a>
+                                    </strong>
+                                </h5>
+
+                                <h4 class="font-weight-bold blue-text">
+                                    <strong>99$</strong>
+                                </h4>
+
+                            </div>
+                            <!--Card content-->
+
+                        </div>
+                        <!--Card-->
+
+                    </div>
+                    <!--Grid column-->
+                    <!--Fourth column-->
+                    <div class="col-lg-3 col-md-6 mb-4">
+
+                        <!--Card-->
+                        <div class="card">
+
+                            <!--Card image-->
+                            <div class="view overlay">
+                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"
+                                     alt="">
+                                <a>
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <!--Card image-->
+                            <!--Card content-->
+                            <div class="card-body text-center">
+                                <!--Category & Title-->
+                                <a href="" class="grey-text">
+                                    <h5>Outwear</h5>
+                                </a>
+                                <h5>
+                                    <strong>
+                                        <a href="" class="dark-grey-text">Black jacket</a>
+                                    </strong>
+                                </h5>
+
+                                <h4 class="font-weight-bold blue-text">
+                                    <strong>219$</strong>
+                                </h4>
+
+                            </div>
+                            <!--Card content-->
+
+                        </div>
+                        <!--Card-->
+
+                    </div>
+                    <!--Fourth column-->
+
+                </div>
+                <!--Grid row-->
+
+            </section>
+            <!--Section: Products v.3-->
+
+
+        </div>
+    </main>
+
+    <footer class="page-footer text-center font-small mt-4 wow fadeIn">
+        <div class="text-center">
+
+            <div class="footer-big">
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-3 col-sm-4">
+                            <div class="footer-widget">
+                                <div class="footer-menu footer-menu--1">
+                                    <h4 class="footer-widget-title">Popular Category</h4>
+                                    <ul>
+                                        <li>
+                                            <a href="#">Wordpress</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Plugins</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Joomla Template</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Admin Template</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">HTML Template</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-3 col-sm-4">
+                            <div class="footer-widget">
+                                <div class="footer-menu">
+                                    <h4 class="footer-widget-title">Our Company</h4>
+                                    <ul>
+                                        <li>
+                                            <a href="#">About Us</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">How It Works</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Affiliates</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Testimonials</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Contact Us</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Plan & Pricing</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Blog</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-3 col-sm-4">
+                            <div class="footer-widget">
+                                <div class="footer-menu no-padding">
+                                    <h4 class="footer-widget-title">Help Support</h4>
+                                    <ul>
+                                        <li>
+                                            <a href="#">Support Forum</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Terms &amp; Conditions</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Support Policy</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Refund Policy</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">FAQs</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Buyers Faq</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Sellers Faq</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="mini-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright-text">
+                                <p>
+                                    © 2019
+                                    <a href="#">OnlineShopping</a>. All rights reserved. Created by
+                                    <a href="#">Abdelrahman Ali</a>
+                                </p>
+                            </div>
+
+                            <div class="go_top">
+                                <span class="icon-arrow-up"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+
+    <script type="text/javascript" src="js/popper.min.js"></script>
+
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+
+        new WOW().init();</script>
+</body>
+</html>
+
+

@@ -63,16 +63,47 @@ namespace DeluxeProject.Controllers.UserController
             return View(user);
         }
 
+        public ActionResult Demo()
+        {
+            return View();
+        }
+
         [HttpGet]
         public ActionResult showitem(int id)
         {
             var selecteditem = (from a in db.products
                                 where a.ID == id
                                 select a).ToList();
-            Session["itemid"] = id;
-            return View(selecteditem);
-        }
 
+            Session["itemid"] = id;
+            var _relateditems = (from a in db.products
+                                 where a.ID == id ||
+                                 a.Categ_id == (from cat in db.products where cat.ID == id select cat.Categ_id).FirstOrDefault()
+                                 select a).ToList();
+
+            ViewBag.HoldingItems = _relateditems;
+
+            return View(selecteditem);
+
+        }
+ 
+        
+        public ActionResult RemoveItemfromcart(int id)
+        {
+            var order_id = (from a in db.orders
+                                 select a.ID).Max() + 1;
+
+            var delete_item = (from a in db.shopping_cart_details
+                               where a.order_id == order_id && 
+                               a.item_id == id
+                               select a).FirstOrDefault();
+
+            db.shopping_cart_details.Remove(delete_item);
+            db.SaveChanges();
+
+            return Json("Removed" , JsonRequestBehavior.AllowGet);
+            
+        }
         [HttpPost]
         public JsonResult Saveuser(user user)
         {
@@ -84,7 +115,7 @@ namespace DeluxeProject.Controllers.UserController
 
         [HttpPost]
         public ActionResult SaveOrder(string payment_type)
-        {
+          {
             order order = new order();
             order_details order_Details = new order_details();
 
@@ -151,24 +182,13 @@ namespace DeluxeProject.Controllers.UserController
               
             }
 
-
-
-
-
-
-
-
-
-
-
-
             return Json("Order Made Correctly", JsonRequestBehavior.AllowGet);
 
 
 
         }
 
-        [HttpPost]
+       
         public JsonResult AddtoCart(int id)
         {
             Session["iding"] = id;
@@ -187,9 +207,6 @@ namespace DeluxeProject.Controllers.UserController
                   var cart_icon = (from a in db.shopping_cart_details
                                      where a.order_id == last_order_id
                                      select a.order_id).Count();
-
-             
-
                      Session["itemcount"] = cart_icon;
                      shopping_Cart_Details.item_id = id;
                      shopping_Cart_Details.item_price = itemprice;
@@ -219,15 +236,8 @@ namespace DeluxeProject.Controllers.UserController
 
         }
 
-        //[HttpPost]
-        //public JsonResult UpdateAmount(int id)
-        //{
-        //    var upodate = (from a in db.shopping_cart_details
-        //                   where a.item_id == id
-        //                   select a.item_amount);
 
-
-        //}
+       
 
         public ActionResult shoppingcartitem()
         {
@@ -238,6 +248,7 @@ namespace DeluxeProject.Controllers.UserController
             var checkout = (from a in db.shopping_cart_details
                             where a.order_id == order_id_
                             join b in db.products on a.item_id equals b.ID
+                            join c in db.suppliers on b.supplier_id equals c.ID
                             select b).ToList();
 
             var itemsum = (from a in db.shopping_cart_details.AsEnumerable()

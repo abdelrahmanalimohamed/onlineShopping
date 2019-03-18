@@ -51,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin.cs">
+      <DependentUpon>ShoppingModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Brand.cs">
       <DependentUpon>ShoppingModel.tt</DependentUpon>
     </Compile>
