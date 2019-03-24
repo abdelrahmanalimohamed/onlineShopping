@@ -15,149 +15,43 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 
-<html>
 
+<header>
+    @Html.Partial("_Navbar");
+</header>
 <body>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
-        <div class="container">
+    <div class="container">
+        <section class="text-center mb-4">
 
-            <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
-                <strong class="blue-text">Deluxe Shopping</strong>
-            </a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link waves-effect" href="#">
-                            Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/getting-started/download/"
-                           target="_blank">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect" href="https://mdbootstrap.com/education/bootstrap/" target="_blank">
-                            Customer Service
-                        </a>
-                    </li>
-                </ul>
-
-                <ul class="navbar-nav nav-flex-icons">
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect">
-                            <span class="badge red z-depth-1 mr-1">  </span>
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="clearfix d-none d-sm-inline-block"> Cart </span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://www.facebook.com/mdbootstrap" class="nav-link waves-effect" target="_blank">
-                            <i class="glyphicon glyphicon-log-in"></i>
-                            Login
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://twitter.com/MDBootstrap" class="nav-link waves-effect" target="_blank">
-                            <i class=""></i>
-                            Sign-Up
-                        </a>
-                    </li>
-                    <li class="nav-item" hidden>
-                        <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="nav-link border border-light rounded waves-effect"
-                           target="_blank">
-                            <i class="fab fa-github mr-2"></i>MDB GitHub
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    </div>
-    <main>
-        <div class="container">
         
+            <div class="row wow fadeIn">
 
-            <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
-
-
-                <span class="navbar-brand">Categories:</span>
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-                        aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-
-                <div class="collapse navbar-collapse" id="basicExampleNav">
-
-
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">
-                                All
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Shirts</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Sport wears</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Outwears</a>
-                        </li>
-
-                    </ul>
-
-
-                    <form class="form-inline">
-                        <div class="md-form my-0">
-                            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                        </div>
-                    </form>
-                </div>
-
-
-            </nav>
-
-            <section class="text-center mb-4">
-                @RenderBody()
-
-                <div class="row wow fadeIn">
-
-
-                    <div class="col-lg-3 col-md-6 mb-4">
-
-
-                    </div>
+            @RenderBody();
 
 
 
-                </div>
+            </div>
+        </section>
+    </div>
 
-            </section>
+    <footer>
+        @Html.Partial("_Footer");
 
-
-        </div>
-    </main>
-
-
-
+    </footer>
 
 
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+
+    <script type="text/javascript" src="js/popper.min.js"></script>
+
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+
+    <script type="text/javascript">
+
+        new WOW().init();
+    </script>
 </body>
 
 
-</html>

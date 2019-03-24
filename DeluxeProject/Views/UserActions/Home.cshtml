@@ -190,7 +190,10 @@
     <title>Deluxe Shopping</title>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link href="~/Content/mdb/bootstrap.min.css" rel="stylesheet">
 
     <link href="~/Content/mdb/mdb.min.css" rel="stylesheet">
@@ -230,7 +233,7 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
         <div class="container">
 
-            <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
+            <a class="navbar-brand waves-effect" href="#" target="_blank">
                 <strong class="blue-text">Deluxe Shopping</strong>
             </a>
 
@@ -249,14 +252,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">About</a>
+                        <a class="nav-link waves-effect" href="#" target="_blank">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/getting-started/download/"
+                        <a class="nav-link waves-effect" href="#"
                            target="_blank">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link waves-effect" href="https://mdbootstrap.com/education/bootstrap/" target="_blank">
+                        <a class="nav-link waves-effect" href="#" target="_blank">
                             Customer Service
                         </a>
                     </li>
@@ -271,7 +274,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link waves-effect"  onclick="">
+                        <a href="@Url.Action("","")" class="nav-link waves-effect" data-toggle="modal" data-target="#myModal">
                             <i class="glyphicon glyphicon-log-in"></i>
                             Login
                         </a>
@@ -285,11 +288,46 @@
                     <li class="nav-item" >
                         <a href="#" class="nav-link border border-light rounded waves-effect"
                            target="_blank">
-                            <i class="fab glyphicon-user mr-2"></i>WElcome Abdelrahmnan
+                            <i class="fab glyphicon-user mr-2"></i>Welcome Abdelrahmnan
                         </a>
                     </li>
                 </ul>
             </div>
+        <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+         <div class="login-form">
+        <form>
+            <h2 class="text-center">Sign in</h2>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" name="username" placeholder="Username" required="required">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary login-btn btn-block">Sign in</button>
+            </div>
+            <div class="clearfix" hidden>
+                <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
+                <a href="#" class="pull-right">Forgot Password?</a>
+            </div>
+   
+         
+        </form>
+        <p class="text-center text-muted small">Don't have an account? <a href="@Url.Action("SignUp","UserActions")">Sign up here!</a></p>
+    </div>
+        
+      </div>
+    </div>
+  </div>
         </div>
     </nav>
 
@@ -300,7 +338,7 @@
         <div class="carousel-inner" role="listbox">
 
             <div class="carousel-item active">
-                <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%282%29.jpg'); background-repeat: no-repeat; background-size: cover;">
+                <div class="img-responsive" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%282%29.jpg'); background-repeat: no-repeat; background-size: cover;">
 
                     <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
 
@@ -333,7 +371,41 @@
     </div>
     <main>
         <div class="container">
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
 
+                        <div class="login-form">
+                            <form>
+                                <h2 class="text-center">Sign in</h2>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        <input type="text" class="form-control" name="username" placeholder="Username" required="required">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                        <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary login-btn btn-block">Sign in</button>
+                                </div>
+                                <div class="clearfix" hidden>
+                                    <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
+                                    <a href="#" class="pull-right">Forgot Password?</a>
+                                </div>
+
+
+                            </form>
+                            <p class="text-center text-muted small">Don't have an account? <a href="@Url.Action("SignUp","UserActions")">Sign up here!</a></p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
             <!--Navbar-->
             <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
 
@@ -363,7 +435,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Fashion</a>
                         </li>
-                      
+
 
                     </ul>
                     <!-- Links -->
@@ -387,7 +459,7 @@
                     @foreach (var item in Model)
                     {
                         <div class="col-lg-3 col-md-6 mb-4">
-                                                       
+
                             <div class="card">
 
 
@@ -424,7 +496,7 @@
 
                                 @Html.ActionLink("Add to cart", "AddtoCart", new { id = @item.ID })
                             </div>
-                       
+
 
                         </div>
                     }
@@ -432,8 +504,8 @@
 
 
                 </div>
-             </section>
-          
+            </section>
+
         </div>
     </main>
 

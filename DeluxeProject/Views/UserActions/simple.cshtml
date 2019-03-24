@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @if (Session["username"] != null)
+    {
+        @Html.Partial("_logout");
+    }
+    else
+    {
+        @Html.Partial("_Navbar");
+    }
+</head>
+<body>
+    <div> 
+        @Html.Partial("_Home");
+    </div>
+    <footer>
+        @Html.Partial("_Footer");
+    </footer>
+</body>
+</html>

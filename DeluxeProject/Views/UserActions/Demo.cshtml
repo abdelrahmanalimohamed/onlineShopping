@@ -75,113 +75,115 @@
             }
 
 
-        body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing:}
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-/* Full-width input fields */
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-}
+        * {
+            box-sizing:
+        }
 
-/* Add a background color when the inputs get focus */
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-}
+        /* Full-width input fields */
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
 
-/* Set a style for all buttons */
-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
+            /* Add a background color when the inputs get focus */
+            input[type=text]:focus, input[type=password]:focus {
+                background-color: #ddd;
+                outline: none;
+            }
 
-button:hover {
-  opacity:1;
-}
+        /* Set a style for all buttons */
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+        }
 
-/* Extra styles for the cancel button */
-.cancelbtn {
-  padding: 14px 20px;
-  background-color: #f44336;
-}
+            button:hover {
+                opacity: 1;
+            }
 
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn {
-  float: left;
-  width: 50%;
-}
+        /* Extra styles for the cancel button */
+        .cancelbtn {
+            padding: 14px 20px;
+            background-color: #f44336;
+        }
 
-/* Add padding to container elements */
-.container {
+        /* Float cancel and signup buttons and add an equal width */
+        .cancelbtn, .signupbtn {
+            float: left;
+            width: 50%;
+        }
 
-}
+        /* Add padding to container elements */
+        .container {
+        }
 
-/* The Modal (background) */
+        /* The Modal (background) */
         .modal {
             display: none; /* Hidden by default */
             position: absolute; /* Stay in place */
-        
             left: 0;
             top: 0;
-          
             overflow: visible; /* Enable scroll if needed */
             background-color: rgba(255, 255, 255, .4);
         }
 
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-   /* Could be more or less, depending on screen size */
-}
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            /* 5% from the top, 15% from the bottom and centered */
+            border: 1px solid #888;
+            /* Could be more or less, depending on screen size */
+        }
 
-/* Style the horizontal ruler */
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
+        /* Style the horizontal ruler */
+        hr {
+            border: 1px solid #f1f1f1;
+            margin-bottom: 25px;
+        }
 
-/* The Close Button (x) */
-.close {
-  position: absolute;
-  right: 35px;
-  top: 15px;
-  font-size: 40px;
-  font-weight: bold;
-  color: #f1f1f1;
-}
+        /* The Close Button (x) */
+        .close {
+            position: absolute;
+            right: 35px;
+            top: 15px;
+            font-size: 40px;
+            font-weight: bold;
+            color: #f1f1f1;
+        }
 
-.close:hover,
-.close:focus {
-  color: #f44336;
-  cursor: pointer;
-}
+            .close:hover,
+            .close:focus {
+                color: #f44336;
+                cursor: pointer;
+            }
 
-/* Clear floats */
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
+        /* Clear floats */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
 
-/* Change styles for cancel button and signup button on extra small screens */
-@@media screen and (max-width: 300px) {
-  .cancelbtn, .signupbtn {
-     width: 100%;
-  }
-}
+        /* Change styles for cancel button and signup button on extra small screens */
+        @@media screen and (max-width: 300px) {
+            .cancelbtn, .signupbtn {
+                width: 100%;
+            }
+        }
 
 
 
@@ -394,7 +396,12 @@ hr {
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Deluxe Shopping</title>
 
+    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <link href="~/Content/mdb/bootstrap.min.css" rel="stylesheet">
 
@@ -406,11 +413,6 @@ hr {
 <body>
 
     <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
-
-
-
-        <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
-
         <div class="container">
 
             <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
@@ -455,7 +457,7 @@ hr {
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link waves-effect" onclick="document.getElementById('id01').style.display='block'">
+                        <a href="#" class="nav-link waves-effect" data-toggle="modal" data-target="#myModal">
                             <i class="glyphicon glyphicon-log-in"></i>
                             Login
                         </a>
@@ -477,33 +479,7 @@ hr {
         </div>
     </nav>
 
-        <div class="modal " id="id01">
-            <form class="container">
-                <h2 class="text-center">Sign in</h2>
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input type="text" class="form-control" name="username" placeholder="Username" required="required">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                        <input type="password" class="form-control" name="password" placeholder="Password" required="required">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary login-btn btn-block">Sign in</button>
-                </div>
-                <div class="clearfix" hidden>
-                    <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
-                    <a href="#" class="pull-right">Forgot Password?</a>
-                </div>
-
-
-            </form>
-            <p class="text-center text-muted small">Don't have an account? <a href="@Url.Action("SignUp","UserActions")">Sign up here!</a></p>
-        </div>
+      
   
     <div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel">
 
@@ -545,7 +521,41 @@ hr {
     </div>
     <main>
         <div class="container">
-
+             <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+         <div class="login-form">
+        <form>
+            <h2 class="text-center">Sign in</h2>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" name="username" placeholder="Username" required="required">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary login-btn btn-block">Sign in</button>
+            </div>
+            <div class="clearfix" hidden>
+                <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
+                <a href="#" class="pull-right">Forgot Password?</a>
+            </div>
+   
+         
+        </form>
+        <p class="text-center text-muted small">Don't have an account? <a href="@Url.Action("SignUp","UserActions")">Sign up here!</a></p>
+    </div>
+        
+      </div>
+    </div>
+  </div>
             <!--Navbar-->
             <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
 
@@ -963,17 +973,7 @@ hr {
 
     <script type="text/javascript" src="js/mdb.min.js"></script>
 
-    <script>
-        // Get the modal
-        var modal = document.getElementById('id01');
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
+  
 
     <script type="text/javascript">
 

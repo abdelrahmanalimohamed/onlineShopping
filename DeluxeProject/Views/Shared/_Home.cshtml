@@ -1,0 +1,159 @@
+﻿@model IEnumerable<DeluxeModel.product>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<link href="~/Content/mdb/bootstrap.min.css" rel="stylesheet">
+
+<link href="~/Content/mdb/mdb.min.css" rel="stylesheet" />
+<link href="~/Content/css/loginpop.css" rel="stylesheet" />
+
+<link href="~/Content/mdb/style.min.css" rel="stylesheet" />
+<style type="text/css">
+    html,
+    body,
+    header,
+    .carousel {
+        height: 60vh;
+    }
+
+    @@media (max-width: 740px) {
+
+        html,
+        body,
+        header,
+        .carousel {
+            height: 100vh;
+        }
+    }
+
+    @@media (min-width: 800px) and (max-width: 850px) {
+
+        html,
+        body,
+        header,
+        .carousel {
+            height: 100vh;
+        }
+    }
+</style>
+
+<main>
+    <div class="container">
+
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
+
+            <!-- Navbar brand -->
+            <span class="navbar-brand">Categories:</span>
+
+            <!-- Collapse button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="basicExampleNav">
+
+                <!-- Links -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">
+                            All
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Laptops</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Fashion</a>
+                    </li>
+
+
+                </ul>
+                <!-- Links -->
+
+                <form class="form-inline">
+                    <div class="md-form my-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    </div>
+                </form>
+            </div>
+            <!-- Collapsible content -->
+
+        </nav>
+        <!--/.Navbar-->
+        <!--Section: Products v.3-->
+        <section class="text-center mb-4">
+
+            <!--Grid row-->
+            <div class="row wow fadeIn">
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-3 col-md-6 mb-4">
+
+                        <div class="card">
+
+
+                            <div class="view overlay">
+                                <img src="~/App_File/Images/@item.prd_img" class="card-img-top"
+                                     alt="">
+                                <a>
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+
+                            <div class="card-body text-center">
+
+                                <a href="" class="grey-text">
+                                    <h5>@item.prd_name</h5>
+                                </a>
+                                <h5>
+                                    <strong>
+                                        <a href="" class="dark-grey-text">
+                                            @item.prd_desc
+                                            <span class="badge badge-pill danger-color">NEW</span>
+                                        </a>
+                                    </strong>
+                                </h5>
+
+                                <h4 class="font-weight-bold blue-text">
+                                    <strong>@item.price</strong>
+                                </h4>
+
+                            </div>
+
+                            @Html.ActionLink("View", "showitem", new { id = @item.ID })
+
+
+                            @Html.ActionLink("Add to cart", "AddtoCart", new { id = @item.ID })
+                        </div>
+
+
+                    </div>
+                }
+
+
+
+            </div>
+        </section>
+
+    </div>
+</main>
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript" src="js/popper.min.js"></script>
+
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="js/mdb.min.js"></script>
+
+

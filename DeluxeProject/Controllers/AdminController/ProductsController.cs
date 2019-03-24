@@ -16,6 +16,10 @@ namespace DeluxeProject.Controllers
             return View();
         }
 
+        public ActionResult DemoNav()
+        {
+            return View();
+        }
        
 
         public ActionResult Brands()

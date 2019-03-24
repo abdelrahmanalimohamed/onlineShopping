@@ -229,7 +229,7 @@
 
 <body>
 
-
+    
     <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
         <div class="container">
 
@@ -274,21 +274,21 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="https://www.facebook.com/mdbootstrap" class="nav-link waves-effect" target="_blank">
+                        <a href="@Url.Action("Login","UserActions")" class="nav-link waves-effect" onclick="">
                             <i class="glyphicon glyphicon-log-in"></i>
                             Login
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="https://twitter.com/MDBootstrap" class="nav-link waves-effect" target="_blank">
+                        <a href="@Url.Action("SignUp","UserActions")" class="nav-link waves-effect" target="_blank">
                             <i class=""></i>
                             Sign-Up
                         </a>
                     </li>
-                    <li class="nav-item" hidden>
-                        <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="nav-link border border-light rounded waves-effect"
+                    <li class="nav-item">
+                        <a href="#" class="nav-link border border-light rounded waves-effect"
                            target="_blank">
-                            <i class="fab fa-github mr-2"></i>MDB GitHub
+                            <i class="fab glyphicon-user mr-2"></i>Welcome Abdelrahmnan
                         </a>
                     </li>
                 </ul>
@@ -317,12 +317,16 @@
 
                             <p class="lead">
                                 <span class="mr-1">
-                                    <del>@item.price</del>
+                                    <h2>@item.price $</h2>
                                 </span>
 
                             </p>
+                            <h4 class="font-weight-bold">Name</h4>
+                            <p>
+                                @item.prd_name
+                            </p>
 
-                            <p class="lead font-weight-bold">Description</p>
+                            <h4 class="font-weight-bold">Description</h4>
                             <p>
                                 @item.prd_desc
                             </p>
@@ -371,6 +375,7 @@
                     <div class="col-lg-4 col-md-12 mb-4">
 
                         <img src="~/App_File/Images/@item.prd_img" class="img-fluid" alt="">
+
 
                     </div>
 
@@ -549,7 +554,7 @@
           var selected_id = @Session["itemid"];
           var id = { "id": selected_id }
           $("#btnaddtocart").click(function () {
-          
+
 
             $.ajax({
                 url:'@Url.Action("AddtoCart", "UserActions","User")',

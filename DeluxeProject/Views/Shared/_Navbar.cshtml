@@ -1,55 +1,121 @@
-﻿<style>
-    #lblcartcount {
-        font-size: 12px;
-        background: #ff0000;
-        color: #fff;
-        padding: 0 5px;
-        vertical-align: top;
-        margin-left: -10px;
-    }
+﻿
 
-    .badge {
-        padding-left: 9px;
-        padding-right: 9px;
-        -webkit-border-radius: 9px;
-        -moz-border-radius: 9px;
-        border-radius: 9px;
-    }
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Deluxe Shopping</title>
 
-    .label-warning[href],
-    .badge-warning[href] {
-        background-color: #c67605;
-    }
-</style>
-<header>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Deluxe Shopping</a>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="@Url.Action("Home","UserActions")">Home</a></li>
-                    <li><a href="@Url.Action("","")">About</a></li>
-                    <li><a href="@Url.Action("","")">Shop</a></li>
-                    <li><a href="@Url.Action("","")">Contact</a></li>
+    <link href="~/Content/mdb/bootstrap.min.css" rel="stylesheet">
+
+    <link href="~/Content/mdb/mdb.min.css" rel="stylesheet" />
+    <link href="~/Content/css/loginpop.css" rel="stylesheet" />
+    <link href="~/Content/css/signup.css" rel="stylesheet" />
+
+    <link href="~/Content/mdb/style.min.css" rel="stylesheet" />
+    <style type="text/css">
+        html,
+        body,
+        header,
+        .carousel {
+            height: 60vh;
+        }
+
+        .modal-backdrop {
+            opacity: 0.5 !important;
+        }
+
+        @@media (max-width: 740px) {
+
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+
+        @@media (min-width: 800px) and (max-width: 850px) {
+
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+        <div class="container">
+
+            <a class="navbar-brand waves-effect" href="#" target="_blank">
+                <strong class="blue-text">Deluxe Shopping</strong>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link waves-effect" href="#">
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="#" target="_blank">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="#"
+                           target="_blank">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="#" target="_blank">
+                            Customer Service
+                        </a>
+                    </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="@Url.Action("SignUp","UserActions")"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="@Url.Action("Login","UserActions")"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                    <li><a href="@Url.Action("shoppingcartitem","UserActions")">
-                        <span class="glyphicon glyphicon-shopping-cart badge badge-warning " id="lblcartcount">
-                          
-                                @Session["itemcount"]
-                            
-                            </span>
-                        Cart
+
+                <ul class="navbar-nav nav-flex-icons">
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="@Url.Action("shoppingcartitem","UserActions")">
+                            <span class="badge red z-depth-1 mr-1">    @Session["itemcount"] </span>
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("","")" class="nav-link waves-effect" data-toggle="modal" data-target="#myModal">
+                            <i class="glyphicon glyphicon-log-in"></i>
+                            Login
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("","")" class="nav-link waves-effect" target="_blank" data-toggle="modal" data-target="#myModaltwo">
+                            <i class=""></i>
+                            Sign-Up
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link border border-light rounded waves-effect"
+                           target="_blank">
+                            <i class="fab glyphicon-user mr-2"></i>Welcome Abdelrahmnan
                         </a>
                     </li>
                 </ul>
@@ -58,6 +124,178 @@
         </div>
     </nav>
 
-</header>
+    <div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel">
 
 
+
+        <div class="carousel-inner" role="listbox">
+
+            <div class="carousel-item active">
+                <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%282%29.jpg'); background-repeat: no-repeat; background-size: cover;">
+
+                    <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
+
+                        <div class="text-center white-text mx-5 wow fadeIn">
+                            <h1 class="mb-4">
+                                <strong></strong>
+                            </h1>
+                            <p>
+                                <strong></strong>
+                            </p>
+                            <p class="mb-4 d-none d-md-block">
+                                <strong>
+
+                                </strong>
+                            </p>
+                            <a target="_blank" href="#" class="">
+
+
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <main>
+        <div class="container">
+            <div class="modal" id="myModaltwo">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+
+                        <div id="login-box">
+                            <div class="left-box">
+                                <h1> Sign Up</h1>
+                                <input type="text" name="username" placeholder="Full Name" />
+                                <input type="text" name="username" placeholder="Username" />
+                                <input type="text" name="email" placeholder="Email" />
+                                <input type="password" name="password" placeholder="Password" />
+
+                                <input type="password" name="password2" placeholder="Retype password" />
+
+                                <input type="button" name="signup-button" value="Sign Up" id="btnsave" />
+
+                            </div>
+
+                            <div class="right-box">
+                                <span class="signinwith"><br /></span>
+
+                                @using (Html.BeginForm("Login", "ThirdParty", FormMethod.Post))
+                                {
+
+                                    <button class="social facebook" id="btnfb" type="submit">
+                                        <i class="fa fa-facebook fa-fw"></i>
+                                        Login with Facebook
+
+                                    </button>
+
+
+                                }
+
+
+                            </div>
+                            <div class="or">OR</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <div class="login-form">
+                            <form>
+                                <h2 class="text-center">Sign in</h2>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        <input type="text" class="form-control" name="username" placeholder="Username" required="required" id="txtusername">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                        <input type="password" class="form-control" name="password" placeholder="Password" required="required" id="txtpsw">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-primary login-btn btn-block" id="btnsignin">Sign in</button>
+                                </div>
+                                <div class="clearfix" hidden>
+                                    <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
+                                    <a href="#" class="pull-right">Forgot Password?</a>
+                                </div>
+
+
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+
+    <script type="text/javascript" src="js/popper.min.js"></script>
+
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnsignin").click(function () {
+            alert('clicked');
+
+            var username = $('#txtusername').val();
+            var password = $('#txtpsw').val();
+            var finaldata = { "username": username, "password": password }
+
+
+            $.ajax({
+                url:'@Url.Action("Login","UserActions","User")',
+                type: "POST",
+                data: JSON.stringify(finaldata),
+                dataType: "json",
+                contentType: "application/json",
+                success: function (response) {
+                    alert(response);
+                    window.open('@Url.Action("simple","UserActions")')
+                   
+
+                },
+                error: function (e) {
+                    alert("an error has occured", e);
+                }
+
+
+
+            });
+
+
+
+
+        });
+
+
+
+
+    });
+</script>

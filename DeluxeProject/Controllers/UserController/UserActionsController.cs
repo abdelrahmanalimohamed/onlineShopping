@@ -63,10 +63,7 @@ namespace DeluxeProject.Controllers.UserController
             return View(user);
         }
 
-        public ActionResult Demo()
-        {
-            return View();
-        }
+     
 
         [HttpGet]
         public ActionResult showitem(int id)
@@ -263,24 +260,41 @@ namespace DeluxeProject.Controllers.UserController
 
         }
 
+    
+        
 
-        public ActionResult Home()
+        public ActionResult simple()
         {
             var order_id = (from a in db.orders
-                            select a.ID).Count()+1;
+                            select a.ID).Count() + 1;
 
             var last_id = (from a in db.shopping_cart_details
                            where a.order_id == order_id
                            select a.order_id).Count();
 
+
             Session["itemcount"] = last_id;
             return View(db.products.ToList());
         }
-
       
-        public ActionResult Login()
+        
+        public ActionResult Login(string username , string password)
         {
-            return View();
+            var validation = (from a in db.users
+                              where a.username == username && a.passowrds == password
+                              select a).Any();
+
+
+            if(validation != true)
+            {
+                return Json("Not Valid username or password", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+               Session["username"] = username;
+                return Json("Valid Data entered", JsonRequestBehavior.AllowGet);
+                
+            }
         }
 
         public ActionResult Checkout()

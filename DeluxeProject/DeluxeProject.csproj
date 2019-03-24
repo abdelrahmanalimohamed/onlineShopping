@@ -155,6 +155,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\loginpop.css" />
+    <Content Include="Content\css\signup.css" />
     <Content Include="Content\kertas1-.jpg" />
     <Content Include="Content\mdb\bootstrap.min.css" />
     <Content Include="Content\mdb\bootstrap.min.js" />
@@ -243,6 +245,9 @@
     <Content Include="Views\UserActions\showitemoncart.cshtml" />
     <Content Include="Views\UserActions\shoppingcartitem.cshtml" />
     <Content Include="Views\UserActions\Demo.cshtml" />
+    <Content Include="Views\UserActions\DemoHome.cshtml" />
+    <Content Include="Views\Shared\_Home.cshtml" />
+    <Content Include="Views\UserActions\simple.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
