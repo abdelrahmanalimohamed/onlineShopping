@@ -115,9 +115,7 @@ namespace DeluxeProject.Controllers.UserController
           {
             order order = new order();
             order_details order_Details = new order_details();
-
-          
-              
+            
                 var getid = (from a in db.orders
                          select a.ID).Count();
                if(getid == 0)
@@ -143,8 +141,9 @@ namespace DeluxeProject.Controllers.UserController
                                   where a.payment_type == payment_type
                                   select a.ID).FirstOrDefault();
 
-               
+              
                 order.date_created = DateTime.Now;
+
                 order.total_sum = double.Parse(TempData["totalprice"].ToString());
                 order.amount = totalsum;
              //   order.user_id = userid;
@@ -171,7 +170,7 @@ namespace DeluxeProject.Controllers.UserController
                 order_Details.order_prd_name = prods.prd_name;
                 order_Details.order_prd_price = prods.price;
                 order_Details.prd_id = prods.ID;
-               
+                var finalqty = prods.prd_quantity - int.Parse(TempData["amount"].ToString()) ;
                 order_Details.order_date = DateTime.Now;
                 order_Details.order_id = getid;
                 db.order_details.Add(order_Details);
@@ -186,9 +185,11 @@ namespace DeluxeProject.Controllers.UserController
         }
 
        
-        public JsonResult AddtoCart(int id)
+        public JsonResult AddtoCart(int id , int amount)
         {
             Session["iding"] = id;
+            TempData["amount"] = amount;
+        
             shopping_cart_details shopping_Cart_Details = new shopping_cart_details();
             int last_order_id;
             var checking = (from a in db.orders
@@ -197,6 +198,9 @@ namespace DeluxeProject.Controllers.UserController
             var itemprice = (from a in db.products
                              where a.ID == id
                              select a.price).FirstOrDefault();
+            int item_price = Convert.ToInt32(itemprice);
+            double totalfees = item_price * amount;
+            TempData["totalcalc"] = totalfees;
             if (checking == 0)
                 {
                     last_order_id = checking + 1;
@@ -207,7 +211,7 @@ namespace DeluxeProject.Controllers.UserController
                      Session["itemcount"] = cart_icon;
                      shopping_Cart_Details.item_id = id;
                      shopping_Cart_Details.item_price = itemprice;
-                     shopping_Cart_Details.item_amount = 1;
+                     shopping_Cart_Details.item_amount = amount;
                      shopping_Cart_Details.order_id = last_order_id;
                      db.shopping_cart_details.Add(shopping_Cart_Details);
                      db.SaveChanges();
@@ -222,8 +226,8 @@ namespace DeluxeProject.Controllers.UserController
                     Session["itemcount"] = cart_icon;
                     last_order_id = getmax + 1;
                     shopping_Cart_Details.item_id = id;
-                    shopping_Cart_Details.item_price = itemprice;
-                    shopping_Cart_Details.item_amount = 1;
+                    shopping_Cart_Details.item_price = totalfees.ToString();
+                    shopping_Cart_Details.item_amount = amount;
                     shopping_Cart_Details.order_id = last_order_id;
                     db.shopping_cart_details.Add(shopping_Cart_Details);
                     db.SaveChanges();
@@ -240,7 +244,7 @@ namespace DeluxeProject.Controllers.UserController
         {
             int item_id = Convert.ToInt32(Session["iding"]);
             var order_id_ = (from a in db.orders
-                             select a.ID).Count() + 1;
+                             select a.ID).Max() + 1;
 
             var checkout = (from a in db.shopping_cart_details
                             where a.order_id == order_id_
@@ -251,8 +255,13 @@ namespace DeluxeProject.Controllers.UserController
             var itemsum = (from a in db.shopping_cart_details.AsEnumerable()
                            where a.order_id == order_id_
                            join b in db.products on a.item_id equals b.ID
-                           select b).Sum(w => Convert.ToDecimal(w.price));
+                           select a).Sum(w => Convert.ToDecimal(w.item_price));
 
+            var itemamount = (from a in db.shopping_cart_details
+                              where a.order_id == order_id_
+                              join b in db.products on a.item_id equals b.ID
+                              select a.item_amount).ToList();
+            ViewBag.amount_ = itemamount;
             ViewBag.TotalSum = itemsum;
             TempData["totalprice"] = itemsum;
 
@@ -284,14 +293,17 @@ namespace DeluxeProject.Controllers.UserController
                               where a.username == username && a.passowrds == password
                               select a).Any();
 
-
-            if(validation != true)
+            var fullname = (from a in db.users
+                               where a.username == username && a.passowrds == password
+                               select a.name).FirstOrDefault();
+            if (validation != true)
             {
                 return Json("Not Valid username or password", JsonRequestBehavior.AllowGet);
             }
             else
             {
-               Session["username"] = username;
+                Session["username"] = username;
+                Session["fullname"] = fullname;
                 return Json("Valid Data entered", JsonRequestBehavior.AllowGet);
                 
             }
@@ -308,7 +320,7 @@ namespace DeluxeProject.Controllers.UserController
         public ActionResult Logout()
         {
           Session.Clear();
-          return  RedirectToAction("Home", "UserActions","/Controllers/User");
+          return  RedirectToAction("Simple", "UserActions","/Controllers/User");
         }
     }
 }

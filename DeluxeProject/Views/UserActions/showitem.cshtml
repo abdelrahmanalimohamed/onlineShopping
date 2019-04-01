@@ -233,7 +233,7 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
         <div class="container">
 
-            <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
+            <a class="navbar-brand waves-effect" href="#" target="_blank">
                 <strong class="blue-text">Deluxe Shopping</strong>
             </a>
 
@@ -333,7 +333,7 @@
 
                             <form class="d-flex justify-content-left">
                                 <!-- Default input -->
-                                <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
+                                <input type="text"  aria-label="Search" class="form-control" style="width: 100px" id="txtamount">
                                 <button class="btn btn-primary btn-md my-0 p" type="button" id="btnaddtocart">
                                     Add to cart
                                     <i class="fas fa-shopping-cart ml-1"></i>
@@ -390,140 +390,7 @@
         </div>
     </main>
 
-    <footer class="page-footer text-center font-small mt-4 wow fadeIn">
-        <div class="text-center">
-
-            <div class="footer-big">
-
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-md-3 col-sm-4">
-                            <div class="footer-widget">
-                                <div class="footer-menu footer-menu--1">
-                                    <h4 class="footer-widget-title">Popular Category</h4>
-                                    <ul>
-                                        <li>
-                                            <a href="#">Wordpress</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Plugins</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Joomla Template</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Admin Template</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">HTML Template</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="col-md-3 col-sm-4">
-                            <div class="footer-widget">
-                                <div class="footer-menu">
-                                    <h4 class="footer-widget-title">Our Company</h4>
-                                    <ul>
-                                        <li>
-                                            <a href="#">About Us</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">How It Works</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Affiliates</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Testimonials</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Contact Us</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Plan & Pricing</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Blog</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="col-md-3 col-sm-4">
-                            <div class="footer-widget">
-                                <div class="footer-menu no-padding">
-                                    <h4 class="footer-widget-title">Help Support</h4>
-                                    <ul>
-                                        <li>
-                                            <a href="#">Support Forum</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Terms &amp; Conditions</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Support Policy</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Refund Policy</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">FAQs</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Buyers Faq</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Sellers Faq</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="mini-footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="copyright-text">
-                                <p>
-                                    © 2019
-                                    <a href="#">OnlineShopping</a>. All rights reserved. Created by
-                                    <a href="#">Abdelrahman Ali</a>
-                                </p>
-                            </div>
-
-                            <div class="go_top">
-                                <span class="icon-arrow-up"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </footer>
+@Html.Partial("_footer")
 
     <script type="text/javascript" src="~/Content/mdb/jquery-3.3.1.min.js"></script>
     <!-- Bootstrap tooltips -->
@@ -539,21 +406,16 @@
 
     </script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.js"></script>
-    <script type="text/JavaScript" src="http://www.professorcloud.com/js/cloud-zoom.1.0.2.js"></script>
-    <script src="~/Scripts/app.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function () {
 
           var selected_id = @Session["itemid"];
+          var amount = $('#txtamount').val();
           var id = { "id": selected_id }
           $("#btnaddtocart").click(function () {
+              var amount = $('#txtamount').val();
+              var id = { "id": selected_id, "amount": amount }
 
 
             $.ajax({

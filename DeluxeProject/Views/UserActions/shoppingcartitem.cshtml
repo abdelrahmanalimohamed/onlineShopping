@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<DeluxeModel.product>
+
+
 @{
     ViewBag.Title = "shoppingcartitem";
     Layout = null;
@@ -28,7 +30,7 @@
                 </div>
                 <div class="content">
                     <div class="row">
-                     
+
 
 
                         <div class="col-md-12 col-lg-8">
@@ -53,18 +55,13 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4 quantity">
-                                                            <label for="quantity">Quantity:</label>
-                                                            <select class="form-control quantity-input" id="selectqty" typeof="submit">
-                                                             <option value="@item.ID">1</option>
-                                                            </select>
-                                                        </div>
+
                                                         <div class="col-md-3 price">
                                                             <span>$ @item.price</span>
                                                             <span>
                                                                 @Ajax.ActionLink("Remove", "RemoveItemfromcart", "UserActions", new { id = item.ID }, new AjaxOptions { UpdateTargetId = "itemcontent_", InsertionMode = InsertionMode.Replace, HttpMethod = "DELETE" })
-                                                               
-                                                               
+
+
                                                             </span>
                                                         </div>
                                                     </div>
@@ -78,21 +75,28 @@
                                 </div>
                             }
                         </div>
-           
+                        @foreach (var it in ViewBag.amount_)
+                        {
+                            <div class="col-md-4 quantity">
+                                <label for="quantity">Quantity:</label>
+                                <input type="text" value="@it" />
+                            </div>
+
+                        }
                         <div class="col-md-12 col-lg-4">
                             <div class="summary">
                                 <h3>Summary</h3>
-                            
-                                    <div class="summary-item"><span class="text">Shipping</span><span class="price">Free Shipping</span></div>
-                                    <div class="summary-item"><span class="text">Total</span><span class="price">$ @ViewBag.TotalSum</span></div>
-                                    <div class="summary-item">
-                                        <span class="text">Payment</span><span class="price">PayPal <input type="checkbox" value="PayPal" id="paypalcheck" class="cccc" /></span>
-                                        <br />
-                                        <span class="price">Cash <input type="checkbox" value="Cash" id="cashcheck" class="cccc" /></span>
 
-                                    </div>
-                                    <button type="button" class="btn btn-primary btn-lg btn-block" id="checkout">Checkout</button>
+                                <div class="summary-item"><span class="text">Shipping</span><span class="price">Free Shipping</span></div>
+                                <div class="summary-item"><span class="text">Total</span><span class="price">$ @ViewBag.TotalSum</span></div>
+                                <div class="summary-item">
+                                    <span class="text">Payment</span><span class="price">PayPal <input type="checkbox" value="PayPal" id="paypalcheck" class="cccc" /></span>
+                                    <br />
+                                    <span class="price">Cash <input type="checkbox" value="Cash" id="cashcheck" class="cccc" /></span>
+
                                 </div>
+                                <button type="button" class="btn btn-primary btn-lg btn-block" id="checkout">Checkout</button>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,33 +1,171 @@
 ﻿
-<header>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Deluxe Shopping</a>
 
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-            @if (Session["facebookname"] != null)
-            {
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="@Url.Action("Logout","UserActions")"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-                <li><a href="@Url.Action("","")"><span class="glyphicon glyphicon-shopping-cart"></span>Cart</a></li>
-                <li>
-                    <a href="@Url.Action("Login","UserActions")">
-                        <span class="">
-                            welcome @Session["facebookname"]
-                        </span>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Deluxe Shopping</title>
 
-                    </a>
-                </li>
-            </ul>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <link href="~/Content/mdb/bootstrap.min.css" rel="stylesheet">
+
+    <link href="~/Content/mdb/mdb.min.css" rel="stylesheet" />
+    <link href="~/Content/css/loginpop.css" rel="stylesheet" />
+    <link href="~/Content/css/signup.css" rel="stylesheet" />
+
+    <link href="~/Content/mdb/style.min.css" rel="stylesheet" />
+    <style type="text/css">
+        html,
+        body,
+        header,
+        .carousel {
+            height: 60vh;
+        }
+
+        .modal-backdrop {
+            opacity: 0.5 !important;
+        }
+
+        @@media (max-width: 740px) {
+
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
             }
+        }
+
+        @@media (min-width: 800px) and (max-width: 850px) {
+
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+        <div class="container">
+
+            <a class="navbar-brand waves-effect" href="#" target="_blank">
+                <strong class="blue-text">Deluxe Shopping</strong>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link waves-effect" href="#">
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="#" target="_blank">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="#"
+                           target="_blank">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="#" target="_blank">
+                            Customer Service
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav nav-flex-icons">
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="@Url.Action("shoppingcartitem","UserActions")">
+                            <span class="badge red z-depth-1 mr-1">    @Session["itemcount"] </span>
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Logout","UserActions")" class="nav-link waves-effect">
+                            <i class="glyphicon glyphicon-log-in"></i>
+                            Logout
+                        </a>
+                    </li>
+                  
+                    <li class="nav-item">
+                        <a href="#" class="nav-link border border-light rounded waves-effect"
+                           target="_blank">
+                            <i class="fab glyphicon-user mr-2"></i>Welcome @Session["fullname"]
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
         </div>
     </nav>
-</header>
+
+    <div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel">
+
+
+
+        <div class="carousel-inner" role="listbox">
+
+            <div class="carousel-item active">
+                <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%282%29.jpg'); background-repeat: no-repeat; background-size: cover;">
+
+                    <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
+
+                        <div class="text-center white-text mx-5 wow fadeIn">
+                            <h1 class="mb-4">
+                                <strong></strong>
+                            </h1>
+                            <p>
+                                <strong></strong>
+                            </p>
+                            <p class="mb-4 d-none d-md-block">
+                                <strong>
+
+                                </strong>
+                            </p>
+                            <a target="_blank" href="#" class="">
+
+
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+
+    <script type="text/javascript" src="js/popper.min.js"></script>
+
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+
+</body>
+

@@ -106,16 +106,17 @@
                             Login
                         </a>
                     </li>
+                    @Html.ActionLink("CLickHere" , "", "",new { @data_toggle = "modal", @data_target = "#myModaltwo" })
                     <li class="nav-item">
                         <a href="@Url.Action("","")" class="nav-link waves-effect" target="_blank" data-toggle="modal" data-target="#myModaltwo">
                             <i class=""></i>
                             Sign-Up
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" hidden>
                         <a href="#" class="nav-link border border-light rounded waves-effect"
                            target="_blank">
-                            <i class="fab glyphicon-user mr-2"></i>Welcome Abdelrahmnan
+                            <i class="fab glyphicon-user mr-2"></i>
                         </a>
                     </li>
                 </ul>
