@@ -11,18 +11,19 @@ namespace DeluxeProject.Controllers.AdminController
     {
         DeluxeShoppingEntities db = new DeluxeShoppingEntities();
       
-        public ActionResult Index()
+        public ActionResult ManageProducts()
         {
-            return View(db.Brands.ToList());
+           
+            return View(db.products.ToList());
         }
 
         public ActionResult FindItem(int id)
         {
-            return PartialView("_ProductModel", db.Brands.Find(id));
+            return PartialView("_Details", db.products.Find(id));
         }
     
         
-        [HttpDelete]
+ 
         public ActionResult DeleteProduct(int id)
         {
             var deleteproduct = (from a in db.products
@@ -31,19 +32,11 @@ namespace DeluxeProject.Controllers.AdminController
 
             db.products.Remove(deleteproduct);
             db.SaveChanges();
-            return Json("");
+            return Json("Deletion is Done",JsonRequestBehavior.AllowGet);
         }
 
 
 
-      
-        public ActionResult showProduct(int id)
-        {
-            var product = (from a in db.products
-                           where a.ID == id
-                           select a).ToList();
-            ViewBag.productshow = product;
-            return Json(product , JsonRequestBehavior.AllowGet);
-        }
+     
     }
 }

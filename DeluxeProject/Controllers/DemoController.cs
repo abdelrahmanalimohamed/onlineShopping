@@ -20,5 +20,23 @@ namespace DeluxeProject.Controllers
         {
             return PartialView("_Details", db.products.Find(id));
         }
+
+        [HttpPost]
+        public ActionResult Details(product product)
+        {
+            return null;
+        }
+
+        [HttpDelete]
+        public ActionResult DeleteProduct(int id)
+        {
+            var deleteproduct = (from a in db.products
+                                 where a.ID == id
+                                 select a).FirstOrDefault();
+
+            db.products.Remove(deleteproduct);
+            db.SaveChanges();
+            return Json("Deletion is Done");
+        }
     }
 }

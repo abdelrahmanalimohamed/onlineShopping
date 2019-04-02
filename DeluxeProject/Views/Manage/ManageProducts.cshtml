@@ -1,137 +1,150 @@
-﻿
+﻿@model IEnumerable<DeluxeModel.product>
+
 @{
-    ViewBag.Title = "Mange";
-
+    ViewBag.Title = "ManageProducts";
+    Layout = "~/Views/Shared/_AdminMaster.cshtml";
 }
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<html>
+<head>
+    <link href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+</head>
 
-<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-<link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+<body>
+    <div>
+        <table class="table table-striped" id="prdtble">
 
-<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
-<div class="row">
-    <table id="result_tble" class="table table-striped table-bordered">
-        <thead>
             <tr>
-                <th>ID</th>
-                <th>Product Name</th>
-                <th>Actions</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Product Quantity</th>
+                <th scope="col">Product Price</th>
+                <th scope="col">Product Description</th>
+                <th scope="col">Product Image</th>
+                <th scope="col">Product Category</th>
+                <th scope="col">Product Supplier</th>
+                <th scope="col">Product Brand</th>
+                <th scope="col">Action</th>
+
             </tr>
-        </thead>
-    </table>
-</div>
 
 
-<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
-@section scripts{
-    <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-
-    <script>
-        var Popup, dataTable;
-        $(document).ready(function () {
-            dataTable = $("#result_tble").DataTable({
-                "ajax": {
-                    "url": '@Url.Action("AllProducts", "Home", "Admin")',
-                    "type": "GET",
-                    "datatype": "json"
-                },
-                "columns": [
-                    { "data": "ID" },
-                    { "data": "prd_name" },
-
-                    {"data":"ID" , "render" : function (data) {
-                        return "<a class='btn btn-default btn-sm' onclick=PopupForm('@Url.Action("AddOrEdit","Employee")/" + data + "')><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete("+data+")><i class='fa fa-trash'></i> Delete</a>";
-                    },
-                        "orderable": false,
-                        "searchable":false,
-                        "width":"150px"
-                    }
-
-                ],
-                "language": {
-
-                    "emptyTable" : "No data found, Please click on <b>Add New</b> Button"
-                }
-            });
-        });
-
-        function PopupForm(url) {
-            var formDiv = $('<div/>');
-            $.get(url)
-            .done(function (response) {
-                formDiv.html(response);
-
-                Popup = formDiv.dialog({
-                    autoOpen: true,
-                    resizable: false,
-                    title: 'Fill Employee Details',
-                    height: 500,
-                    width: 700,
-                    close: function () {
-                        Popup.dialog('destroy').remove();
-                    }
-
-                });
-            });
-        }
-
-        function SubmitForm(form) {
-            $.validator.unobtrusive.parse(form);
-            if($(form).valid()){
-                $.ajax({
-                    type : "POST",
-                    url : form.action,
-                    data : $(form).serialize(),
-                    success : function (data) {
-                        if(data.success)
-                        {
-                            Popup.dialog('close');
-                            dataTable.ajax.reload();
-
-                            $.notify(data.message,{
-                                globalPosition :"top center",
-                                className : "success"
-                            })
-
-                        }
-                    }
-                });
-            }
-            return false;
-        }
-
-        function Delete(id) {
-            if(confirm('Are You Sure to Delete this Employee Record ?'))
+            @foreach (var item in Model)
             {
+                <tr>
+                    <td hidden>@item.ID</td>
+                    <td>@item.prd_name</td>
+                    <td>@item.prd_quantity</td>
+                    <td>@item.price</td>
+                    <td>@item.prd_desc</td>
+                    <td>
+                        <img src="~/App_File/Images/@item.prd_img" height="100" width="100" />
+                    </td>
+                    <td>@item.Category.Category_name</td>
+                    <td>@item.supplier.company_name</td>
+                    <td>@item.Brand.Brnd_name</td>
+                    <td><a class="details" href="javascript:;">Update</a>|| <a class="details_" href="javascript:;">Delete</a></td>
+                    <td>@Html.ActionLink("Click Here", "DeleteProduct", new { id = item.ID })</td>
+                    <td></td>
+
+                </tr>
+            }
+
+
+
+        </table>
+
+
+        <div id="dialog" style="display: none">
+        </div>
+    </div>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
+    <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
+
+    <script type="text/javascript">
+        $(function () {
+            $("#dialog").dialog({
+                autoOpen: false,
+                maxWidth: 600,
+                maxHeight: 500,
+                width: 600,
+                height: 500,
+                modal: true,
+                title: "View Details"
+            });
+            $("#prdtble .details").click(function () {
+                var id = $(this).closest("tr").find("td").eq(0).html();
                 $.ajax({
                     type: "POST",
-                    url: '@Url.Action("Delete","Employee")/' + id,
-                    success: function (data) {
-                        if (data.success)
-                        {
-                            dataTable.ajax.reload();
-
-                            $.notify(data.message, {
-                                globalPosition: "top center",
-                                className: "success"
-                            })
-
-                        }
+                    url: "/Demo/Details",
+                    data: '{id: "' + id + '" }',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    success: function (response) {
+                        $('#dialog').html(response);
+                        $('#dialog').dialog('open');
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
                     }
-
                 });
-            }
-        }
+            });
 
 
+
+        });
     </script>
 
-}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $("#prdtble .details_").click(function () {
+            var id = $(this).closest("tr").find("td").eq(0).html();
+            $.ajax({
+                url: "/Demo/DeleteProduct",
+                type: "Delete",
+                data: JSON.stringify(id),
+                dataType: "json",
+                contentType: "application/json",
+                success: function (response) {
+                    alert(response);
+                    
+                },
+                error: function (e) {
+                    alert("an error has occured" + e);
+                }
 
 
+
+            });
+
+
+
+        });
+    </script>
+
+</body>
+</html>
 

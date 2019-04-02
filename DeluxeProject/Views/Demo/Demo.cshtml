@@ -39,23 +39,46 @@
 </head>
 <body>
     <div>
-        <table cellpadding="0" cellspacing="0" id="CustomerGrid">
-            <tr>
-                <th>BrandID</th>
-                <th>Brand Name</th>
+        <table class="table table-striped" id="prdtble">
 
-                <th></th>
+            <tr>
+                <th scope="col">Product Name</th>
+                <th scope="col">Product Quantity</th>
+                <th scope="col">Product Price</th>
+                <th scope="col">Product Description</th>
+                <th scope="col">Product Image</th>
+                <th scope="col">Product Category</th>
+                <th scope="col">Product Supplier</th>
+                <th scope="col">Product Brand</th>
+                <th scope="col">Action</th>
+
             </tr>
+
+
+
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.ID</td>
+                    <td hidden>@item.ID</td>
                     <td>@item.prd_name</td>
+                    <td>@item.prd_quantity</td>
+                    <td>@item.price</td>
+                    <td>@item.prd_desc</td>
+                    <td>
+                        <img src="~/App_File/Images/@item.prd_img" />
+                    </td>
+                    <td>@item.Category.Category_name</td>
+                    <td>@item.supplier.company_name</td>
+                    <td>@item.Brand.Brnd_name</td>
+                    <td><a class="details" href="javascript:;">Update</a></td>
 
-                    <td><a class="details" href="javascript:;">View</a></td>
                 </tr>
             }
+
+
+
         </table>
+     
 
         <div id="dialog" style="display: none">
         </div>
@@ -67,10 +90,15 @@
         $(function () {
             $("#dialog").dialog({
                 autoOpen: false,
+                maxWidth: 600,
+                maxHeight: 500,
+                width: 600,
+                height: 500,
                 modal: true,
+             
                 title: "View Details"
             });
-            $("#CustomerGrid .details").click(function () {
+            $("#prdtble .details").click(function () {
                 var id = $(this).closest("tr").find("td").eq(0).html();
                 $.ajax({
                     type: "POST",

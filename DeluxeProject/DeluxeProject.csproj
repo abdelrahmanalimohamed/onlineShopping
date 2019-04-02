@@ -300,7 +300,6 @@
     <Content Include="Views\Products\Brands.cshtml" />
     <Content Include="Views\Products\Category.cshtml" />
     <Content Include="Views\Products\Supplier.cshtml" />
-    <Content Include="Views\Products\GetProducts.cshtml" />
     <Content Include="Views\Shared\_UserMaster.cshtml" />
     <Content Include="Views\UserActions\SignUp.cshtml" />
     <Content Include="Views\UserActions\Login.cshtml" />
@@ -316,12 +315,9 @@
     <Content Include="Views\Shared\_Home.cshtml" />
     <Content Include="Views\UserActions\simple.cshtml" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
-    <Content Include="Views\Manage\ManageProducts.cshtml" />
-    <Content Include="Views\Manage\DemoPage.cshtml" />
-    <Content Include="Views\Manage\Products.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Demo\Demo.cshtml" />
     <Content Include="Views\Shared\_Details.cshtml" />
+    <Content Include="Views\Manage\ManageProducts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
