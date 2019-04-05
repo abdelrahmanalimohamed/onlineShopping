@@ -1,67 +1,123 @@
 ﻿
 @model DeluxeModel.product
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
-
-
-<div class="">
-    @using (Html.BeginForm("Update", "ThirdParty", FormMethod.Post))
-    {
-
-
-
+<style type="text/css">
+    body {
+        font-family: Arial;
+        font-size: 10pt;
     }
-    <form>
-        <div class="form-group row">
-            <label for="first_name" class="col-xs-3 col-form-label mr-2">Product Name</label>
-            <div class="col">
-                <input type="text" class="form-control" id="first_name" name="first_name" value="@Model.prd_name">
-            </div>
+
+    table, table td {
+        border: 0px solid #fff;
+    }
+</style>
+
+<form>
+    <div class="form-group row" hidden>
+        <label for="last_name" class="col-xs-3 col-form-label mr-2">Product Description</label>
+        <div class="col">
+   <input type="text" value="@Model.ID"  id="txtid"/>
+
         </div>
-        <div class="form-group row">
-            <label for="last_name" class="col-xs-3 col-form-label mr-2">Product Quantity</label>
-            <div class="col">
-                <input type="text" class="form-control" id="last_name" name="last_name" value="@Model.prd_quantity">
-            </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="first_name" class="col-xs-3 col-form-label mr-2">Product Name</label>
+        <div class="col">
+            <input type="text" class="form-control" id="prd_name" value="@Model.prd_name">
         </div>
-
-        <div class="form-group row">
-            <label for="last_name" class="col-xs-3 col-form-label mr-2">Product Price</label>
-            <div class="col">
-                <input type="text" class="form-control" id="last_name" name="last_name" value="@Model.price">
-            </div>
+    </div>
+    <div class="form-group row">
+        <label for="last_name" class="col-xs-3 col-form-label mr-2">Product Quantity</label>
+        <div class="col">
+            <input type="text" class="form-control" id="prd_qty" value="@Model.prd_quantity">
         </div>
+    </div>
 
-
-
-        <div class="form-group row">
-            <label for="last_name" class="col-xs-3 col-form-label mr-2">Product Description</label>
-            <div class="col">
-                <textarea class="form-control">@Model.prd_desc</textarea>
-
-            </div>
+    <div class="form-group row">
+        <label for="last_name" class="col-xs-3 col-form-label mr-2">Product Price</label>
+        <div class="col">
+            <input type="text" class="form-control" id="prd_price"  value="@Model.price">
         </div>
+    </div>
 
 
-        <div class="form-group row">
-            <label for="last_name" class="col-xs-3 col-form-label mr-2">Product Image</label>
-            <div class="col">
-                <img src="~/App_File/Images/@Model.prd_img" height="100" width="100" />
-                <input type="file" accept="image/*" />
-            </div>
+
+    <div class="form-group row">
+        <label for="last_name" class="col-xs-3 col-form-label mr-2">Product Description</label>
+        <div class="col">
+            <textarea class="form-control" value="@Model.prd_desc" id="txtdesc">@Model.prd_desc</textarea>
+
         </div>
+    </div>
 
 
-
-        <div class="form-group row">
-            <div class="offset-xs-3 col-xs-9">
-                <button type="submit" class="btn btn-primary">Update</button>
-            </div>
+    <div class="form-group row">
+        <label for="last_name" class="col-xs-3 col-form-label mr-2">Product Image</label>
+        <div class="col">
+            <img src="~/App_File/Images/@Model.prd_img" height="100" width="100" />
+            <input type="file" accept="image/*" />
         </div>
-    </form>
-</div>
+    </div>
+
+
+
+    <div class="form-group row">
+        <div class="offset-xs-3 col-xs-9">
+            <button type="button" id="btnupdate" class="btn btn-primary">Update</button>
+        </div>
+    </div>
+</form>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnupdate").click(function () {
+
+
+            var productname = $('#prd_name').val();
+            var productprice = $('#prd_price').val();
+            var productdesc = $('#txtdesc').val();
+            var productqty = $('#prd_qty').val();
+            var id = $('#txtid').val();
+            var finaldata = { "ID": id, "prd_name": productname, "prd_quantity": productqty, "price": productprice, "prd_desc": productdesc }
+
+
+            $.ajax({
+                url:"/Demo/Update",
+                type: "POST",
+                data: JSON.stringify(finaldata),
+                dataType: "json",
+                contentType: "application/json",
+                success: function (response) {
+                    alert(response);
+                 
+
+                },
+                error: function (e) {
+                    alert("an error has occured", e);
+                }
+
+
+
+            });
+
+
+
+
+        });
+
+
+
+
+    });
+</script>
+
 
