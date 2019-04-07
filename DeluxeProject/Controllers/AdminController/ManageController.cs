@@ -17,23 +17,23 @@ namespace DeluxeProject.Controllers.AdminController
             return View(db.products.ToList());
         }
 
-        public ActionResult FindItem(int id)
+        public ActionResult ManageBrands()
         {
-            return PartialView("_Details", db.products.Find(id));
+            return View(db.Brands.ToList());
         }
-    
-        
- 
-        public ActionResult DeleteProduct(int id)
-        {
-            var deleteproduct = (from a in db.products
-                                 where a.ID == id
-                                 select a).FirstOrDefault();
 
-            db.products.Remove(deleteproduct);
-            db.SaveChanges();
-            return Json("Deletion is Done",JsonRequestBehavior.AllowGet);
+        
+        public ActionResult ManageCategory()
+        {
+            return View(db.Categories.ToList());
         }
+
+
+        public ActionResult ManageSuppliers()
+        {
+            return View(db.suppliers.ToList());
+        }
+ 
 
 
 

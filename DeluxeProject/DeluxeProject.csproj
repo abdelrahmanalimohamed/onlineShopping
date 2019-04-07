@@ -315,13 +315,19 @@
     <Content Include="Views\Shared\_Home.cshtml" />
     <Content Include="Views\UserActions\simple.cshtml" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
-    <Content Include="Views\Demo\Demo.cshtml" />
     <Content Include="Views\Shared\_Details.cshtml" />
     <Content Include="Views\Manage\ManageProducts.cshtml" />
+    <Content Include="Views\Manage\ManageBrands.cshtml" />
+    <Content Include="Views\Shared\_BrandDetails.cshtml" />
+    <Content Include="Views\Manage\ManageCategory.cshtml" />
+    <Content Include="Views\Shared\_CategroyDetails.cshtml" />
+    <Content Include="Views\Manage\ManageSuppliers.cshtml" />
+    <Content Include="Views\Shared\_SupplierDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_File\Images\" />
+    <Folder Include="Views\Demo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

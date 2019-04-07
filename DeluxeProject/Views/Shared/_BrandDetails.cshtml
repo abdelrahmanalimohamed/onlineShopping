@@ -1,0 +1,81 @@
+﻿@model DeluxeModel.Brand
+<head>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>*@
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnupdate").click(function () {
+
+
+                var brandname = $('#brdname').val();
+                var id = $('#txtid').val();
+                var finaldata = { "ID": id, "Brnd_name": brandname}
+
+
+                $.ajax({
+                    url: "/Demo/BrandUpdate",
+                    type: "POST",
+                    data: JSON.stringify(finaldata),
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (response) {
+                        alert(response);
+                        location.reload();
+
+
+                    },
+                    error: function (e) {
+                        alert("an error has occured", e);
+                    }
+
+
+
+                });
+
+
+
+
+            });
+
+
+
+
+        });
+    </script>
+</head>
+<style type="text/css">
+    body {
+        font-family: Arial;
+        font-size: 10pt;
+    }
+
+    table, table td {
+        border: 0px solid #fff;
+    }
+</style>
+
+<form>
+    <div class="form-group row" hidden>
+        <label for="last_name" class="col-xs-3 col-form-label mr-2">Brand ID</label>
+        <div class="col">
+            <input type="text" value="@Model.ID" id="txtid" />
+
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="first_name" class="col-xs-3 col-form-label mr-2">Brand Name</label>
+        <div class="col">
+            <input type="text" class="form-control" id="brdname" value="@Model.Brnd_name">
+        </div>
+    </div>
+  
+
+
+
+    <div class="form-group row">
+        <div class="offset-xs-3 col-xs-9">
+            <button type="button" id="btnupdate" class="btn btn-primary">Update</button>
+        </div>
+    </div>
+</form>

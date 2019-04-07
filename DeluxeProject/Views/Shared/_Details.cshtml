@@ -1,6 +1,52 @@
 ﻿
 @model DeluxeModel.product
 
+<head>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>*@
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnupdate").click(function () {
+
+
+                var productname = $('#prd_name').val();
+                var productprice = $('#prd_price').val();
+                var productdesc = $('#txtdesc').val();
+                var productqty = $('#prd_qty').val();
+                var id = $('#txtid').val();
+                var finaldata = { "ID": id, "prd_name": productname, "prd_quantity": productqty, "price": productprice, "prd_desc": productdesc }
+
+
+                $.ajax({
+                    url: "/Demo/Update",
+                    type: "POST",
+                    data: JSON.stringify(finaldata),
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (response) {
+                        alert(response);
+
+
+                    },
+                    error: function (e) {
+                        alert("an error has occured", e);
+                    }
+
+
+
+                });
+
+
+
+
+            });
+
+
+
+
+        });
+    </script>
+</head>
 <style type="text/css">
     body {
         font-family: Arial;
@@ -71,53 +117,10 @@
 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js"></script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#btnupdate").click(function () {
-
-
-            var productname = $('#prd_name').val();
-            var productprice = $('#prd_price').val();
-            var productdesc = $('#txtdesc').val();
-            var productqty = $('#prd_qty').val();
-            var id = $('#txtid').val();
-            var finaldata = { "ID": id, "prd_name": productname, "prd_quantity": productqty, "price": productprice, "prd_desc": productdesc }
-
-
-            $.ajax({
-                url:"/Demo/Update",
-                type: "POST",
-                data: JSON.stringify(finaldata),
-                dataType: "json",
-                contentType: "application/json",
-                success: function (response) {
-                    alert(response);
-                 
-
-                },
-                error: function (e) {
-                    alert("an error has occured", e);
-                }
-
-
-
-            });
 
 
 
 
-        });
 
-
-
-
-    });
-</script>
 
 

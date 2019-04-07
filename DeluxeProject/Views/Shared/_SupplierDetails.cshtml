@@ -1,0 +1,105 @@
+﻿@model DeluxeModel.supplier
+<head>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnupdate").click(function () {
+
+
+                var companyname = $('#companyname').val();
+                var companycontact = $('#compcontact').val();
+                var companymail = $('#compmail').val();
+                var companylocation = $('#comploc').val();
+                var id = $('#txtid').val();
+                var finaldata = { "ID": id, "company_name": companyname, "company_contact": companycontact, "company_mail": companymail, "company_location": companylocation }
+
+
+                $.ajax({
+                    url: "/Demo/UpdateSupplier",
+                    type: "POST",
+                    data: JSON.stringify(finaldata),
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (response) {
+                        alert(response);
+
+
+                    },
+                    error: function (e) {
+                        alert("an error has occured", e);
+                    }
+
+
+
+                });
+
+
+
+
+            });
+
+
+
+
+        });
+    </script>
+</head>
+<style type="text/css">
+    body {
+        font-family: Arial;
+        font-size: 10pt;
+    }
+
+    table, table td {
+        border: 0px solid #fff;
+    }
+</style>
+
+<form>
+    <div class="form-group row" hidden>
+        <label for="last_name" class="col-xs-3 col-form-label mr-2">Supplier ID</label>
+        <div class="col">
+            <input type="text" value="@Model.ID" id="txtid" />
+
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="first_name" class="col-xs-3 col-form-label mr-2">Company Name</label>
+        <div class="col">
+            <input type="text" class="form-control" id="companyname" value="@Model.company_name">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="last_name" class="col-xs-3 col-form-label mr-2">Company Contact</label>
+        <div class="col">
+            <input type="text" class="form-control" id="compcontact" value="@Model.company_contact">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="last_name" class="col-xs-3 col-form-label mr-2">Company Mail</label>
+        <div class="col">
+            <input type="text" class="form-control" id="compmail" value="@Model.company_mail">
+        </div>
+    </div>
+
+
+
+    <div class="form-group row">
+        <label for="last_name" class="col-xs-3 col-form-label mr-2">Company Location</label>
+        <div class="col">
+            <input type="text" class="form-control" id="comploc" value="@Model.company_location">
+
+        </div>
+    </div>
+
+
+
+
+
+    <div class="form-group row">
+        <div class="offset-xs-3 col-xs-9">
+            <button type="button" id="btnupdate" class="btn btn-primary">Update</button>
+        </div>
+    </div>
+</form>
