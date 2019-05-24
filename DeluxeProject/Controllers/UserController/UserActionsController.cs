@@ -20,8 +20,8 @@ namespace DeluxeProject.Controllers.UserController
 
         public ActionResult SignUp()
         {
-            FaceBookConnect.API_Key = "761905080858164";
-            FaceBookConnect.API_Secret = "962d097a2ef51220b74329509a6f61fa";
+            FaceBookConnect.API_Key = "2362878207096245";
+            FaceBookConnect.API_Secret = "ee048380218cf439e4c09605d01b2b93";
 
             user user = new user();
             customer customers = new customer();
@@ -63,7 +63,14 @@ namespace DeluxeProject.Controllers.UserController
             return View(user);
         }
 
-     
+
+
+        [HttpPost]
+        public EmptyResult Login()
+        {
+            FaceBookConnect.Authorize("email", string.Format("{0}://{1}/{2}", Request.Url.Scheme, Request.Url.Authority, "UserActions/SignUp/"));
+            return new EmptyResult();
+        }
 
         [HttpGet]
         public ActionResult showitem(int id)
@@ -82,6 +89,11 @@ namespace DeluxeProject.Controllers.UserController
 
             return View(selecteditem);
 
+        }
+
+        public ActionResult Checkout()
+        {
+            return View();
         }
  
         
@@ -239,7 +251,46 @@ namespace DeluxeProject.Controllers.UserController
 
 
        
+        public ActionResult CheckOutPage()
+        {
 
+            var itemscounted = (from a in db.shopping_cart_details
+                                select a).Count();
+            ViewBag.itemCounted = itemscounted;
+
+            return View();
+        }
+
+        public ActionResult CartPage()
+        {
+            int item_id = Convert.ToInt32(Session["iding"]);
+            var order_id_ = (from a in db.orders
+                             select a.ID).Max() + 1;
+
+            var checkout = (from a in db.shopping_cart_details
+                            where a.order_id == order_id_
+                            join b in db.products on a.item_id equals b.ID
+                            join c in db.suppliers on b.supplier_id equals c.ID
+                            select b).ToList();
+
+            var itemsum = (from a in db.shopping_cart_details.AsEnumerable()
+                           where a.order_id == order_id_
+                           join b in db.products on a.item_id equals b.ID
+                           select a).Sum(w => Convert.ToDecimal(w.item_price));
+
+            var itemamount = (from a in db.shopping_cart_details
+                              where a.order_id == order_id_
+                              join b in db.products on a.item_id equals b.ID
+                              select a.item_amount).ToList();
+
+
+            ViewBag.amount_ = itemamount;
+            ViewBag.TotalSum = itemsum;
+            TempData["totalprice"] = itemsum;
+
+           
+            return View(checkout);
+        }
         public ActionResult shoppingcartitem()
         {
             int item_id = Convert.ToInt32(Session["iding"]);
@@ -261,6 +312,7 @@ namespace DeluxeProject.Controllers.UserController
                               where a.order_id == order_id_
                               join b in db.products on a.item_id equals b.ID
                               select a.item_amount).ToList();
+
             ViewBag.amount_ = itemamount;
             ViewBag.TotalSum = itemsum;
             TempData["totalprice"] = itemsum;
@@ -281,6 +333,12 @@ namespace DeluxeProject.Controllers.UserController
                            where a.order_id == order_id
                            select a.order_id).Count();
 
+            var itemscounted = (from a in db.shopping_cart_details
+                                select a).Count();
+            ViewBag.itemCounted = itemscounted;
+
+
+     
 
             Session["itemcount"] = last_id;
             return View(db.products.ToList());
@@ -305,17 +363,11 @@ namespace DeluxeProject.Controllers.UserController
                 Session["username"] = username;
                 Session["fullname"] = fullname;
                 return Json("Valid Data entered", JsonRequestBehavior.AllowGet);
-                
-            }
-        }
 
-        public ActionResult Checkout()
-        {
-            order order = new order();
-            order.user_id = Convert.ToInt32(Session["userid"]);
-         //   order.ordername = (from a in db.shopping_cart_details)
-            return View();
+            }
+          
         }
+        
 
         public ActionResult Logout()
         {

@@ -288,7 +288,7 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link border border-light rounded waves-effect"
                            target="_blank">
-                            <i class="fab glyphicon-user mr-2"></i>Welcome Abdelrahmnan
+                            <i class="fab glyphicon-user mr-2"></i>Welcome
                         </a>
                     </li>
                 </ul>
@@ -368,7 +368,7 @@
 
 
             </div>
-
+            
             <div class="row wow fadeIn">
                 @foreach (var item in ViewBag.HoldingItems)
                 {
@@ -414,11 +414,17 @@
           var amount = $('#txtamount').val();
           var id = { "id": selected_id }
           $("#btnaddtocart").click(function () {
+              
               var amount = $('#txtamount').val();
               var id = { "id": selected_id, "amount": amount }
 
+              if (amount == null) {
+                  alert("You must enter the amount");
+              }
 
-            $.ajax({
+              else
+              {
+                  $.ajax({
                 url:'@Url.Action("AddtoCart", "UserActions","User")',
                 type: "POST",
                 data: JSON.stringify(id),
@@ -431,7 +437,11 @@
                     alert("an error has occured", e);
                 }
 
-            });
+                  });
+
+              }
+
+         
 
           });
 

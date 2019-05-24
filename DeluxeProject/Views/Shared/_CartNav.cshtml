@@ -23,6 +23,11 @@
 
     <link href="~/Content/mdb/style.min.css" rel="stylesheet" />
     <style type="text/css">
+        .top-buffer {
+            margin-top: 100px;
+        }
+
+        
         html,
         body,
         header,
@@ -72,10 +77,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item ">
                         <a class="nav-link waves-effect" href="#">
                             Home
-                            <span class="sr-only">(current)</span>
+                            @*<span class="sr-only">(current)</span>*@
                         </a>
                     </li>
                     <li class="nav-item">
@@ -106,7 +111,7 @@
                             Login
                         </a>
                     </li>
-                   
+
                     <li class="nav-item">
                         <a href="@Url.Action("","")" class="nav-link waves-effect" target="_blank" data-toggle="modal" data-target="#myModaltwo">
                             <i class=""></i>
@@ -125,44 +130,11 @@
         </div>
     </nav>
 
-    <div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel">
+  <div class="top-buffer">
 
+  </div>
 
-
-        <div class="carousel-inner" role="listbox">
-
-            <div class="carousel-item active">
-                <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%282%29.jpg'); background-repeat: no-repeat; background-size: cover;">
-
-                    <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
-
-                        <div class="text-center white-text mx-5 wow fadeIn">
-                            <h1 class="mb-4">
-                                <strong></strong>
-                            </h1>
-                            <p>
-                                <strong></strong>
-                            </p>
-                            <p class="mb-4 d-none d-md-block">
-                                <strong>
-
-                                </strong>
-                            </p>
-                            <a target="_blank" href="#" class="">
-
-
-                            </a>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-
-        </div>
-
-    </div>
+ 
 
     <main>
         <div class="container">
@@ -264,7 +236,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#btnsignin").click(function () {
-          
+
 
             var username = $('#txtusername').val();
             var password = $('#txtpsw').val();
@@ -282,7 +254,7 @@
                     document.location.reload(true);
 
                   @*//  window.open('@Url.Action("simple","UserActions")')*@
-                   
+
 
                 },
                 error: function (e) {

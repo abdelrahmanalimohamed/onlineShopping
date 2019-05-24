@@ -17,6 +17,12 @@ namespace DeluxeProject.Controllers.AdminController
             return View(db.products.ToList());
         }
 
+
+        public ActionResult ManageUsers()
+        {
+            return View(db.users.ToList());
+        }
+
         public ActionResult ManageBrands()
         {
             return View(db.Brands.ToList());

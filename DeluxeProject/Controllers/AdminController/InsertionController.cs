@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -64,35 +65,40 @@ namespace DeluxeProject.Controllers.AdminController
         [HttpPost]
         public JsonResult InsertProduct(product product)
         {
-            Supplier_Details supplier_Details = new Supplier_Details();
-
-            supplier_Details.supplier_id = product.supplier_id;
-            supplier_Details.supplier_prd_date = DateTime.Now;
-            supplier_Details.supplier_prd_desc = product.prd_desc;
-            supplier_Details.supplier_product_categroy = product.Categ_id;
-            supplier_Details.supplier_product_name = product.prd_name;
-            supplier_Details.supplier_prd_price = product.price;
-            var insertsupplierdetails = db.Supplier_Details.Add(supplier_Details);
-            db.SaveChanges();
-
-            if (product.fileupload != null )
-            {
-                string fileName = Path.GetFileNameWithoutExtension(product.fileupload.FileName);
-                string extension = Path.GetExtension(product.fileupload.FileName);
-                fileName = fileName + DateTime.Now.ToString("yymmssff") + extension;
-                product.prd_img = fileName;
-                product.fileupload.SaveAs(Path.Combine(Server.MapPath("~/App_File/Images"), fileName));
-                db.products.Add(product);
-                db.SaveChanges();
-                return Json("Added", JsonRequestBehavior.AllowGet);
-            }
-         
             
-          
-            else
-            {
-                return Json("An Error Occured", JsonRequestBehavior.AllowGet);
-            }
+                Supplier_Details supplier_Details = new Supplier_Details();
+
+                supplier_Details.supplier_id = product.supplier_id;
+                supplier_Details.supplier_prd_date = DateTime.Now;
+                supplier_Details.supplier_prd_desc = product.prd_desc;
+                supplier_Details.supplier_product_categroy = product.Categ_id;
+                supplier_Details.supplier_product_name = product.prd_name;
+                supplier_Details.supplier_prd_price = product.price;
+                var insertsupplierdetails = db.Supplier_Details.Add(supplier_Details);
+                db.SaveChanges();
+
+                if (product.fileupload != null)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(product.fileupload.FileName);
+                    string extension = Path.GetExtension(product.fileupload.FileName);
+                    fileName = fileName + DateTime.Now.ToString("yymmssff") + extension;
+                    product.prd_img = fileName;
+                    product.fileupload.SaveAs(Path.Combine(Server.MapPath("~/App_File/Images"), fileName));
+                    db.products.Add(product);
+                    db.SaveChanges();
+                    return Json("Added", JsonRequestBehavior.AllowGet);
+                }
+
+                else
+                {
+                    return Json("An Error Occured", JsonRequestBehavior.AllowGet);
+                }
+
+
+      
+
+       
+
         }
 
 

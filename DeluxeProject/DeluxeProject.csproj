@@ -157,6 +157,19 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\button.css" />
+    <Content Include="Content\Cart\bootstrap.min.css" />
+    <Content Include="Content\Cart\bootstrap.min.js" />
+    <Content Include="Content\Cart\jquery-3.3.1.min.js" />
+    <Content Include="Content\Cart\mdb.min.css" />
+    <Content Include="Content\Cart\mdb.min.js" />
+    <Content Include="Content\Cart\popper.min.js" />
+    <Content Include="Content\CheckOut\bootstrap.min.css" />
+    <Content Include="Content\CheckOut\bootstrap.min.js" />
+    <Content Include="Content\CheckOut\jquery-3.3.1.min.js" />
+    <Content Include="Content\CheckOut\mdb.min.css" />
+    <Content Include="Content\CheckOut\mdb.min.js" />
+    <Content Include="Content\CheckOut\popper.min.js" />
+    <Content Include="Content\CheckOut\style.min.css" />
     <Content Include="Content\core.css" />
     <Content Include="Content\css\loginpop.css" />
     <Content Include="Content\css\signup.css" />
@@ -311,7 +324,6 @@
     <Content Include="Views\UserActions\showitemoncart.cshtml" />
     <Content Include="Views\UserActions\shoppingcartitem.cshtml" />
     <Content Include="Views\UserActions\Demo.cshtml" />
-    <Content Include="Views\UserActions\DemoHome.cshtml" />
     <Content Include="Views\Shared\_Home.cshtml" />
     <Content Include="Views\UserActions\simple.cshtml" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
@@ -323,6 +335,11 @@
     <Content Include="Views\Shared\_CategroyDetails.cshtml" />
     <Content Include="Views\Manage\ManageSuppliers.cshtml" />
     <Content Include="Views\Shared\_SupplierDetails.cshtml" />
+    <Content Include="Views\UserActions\Checkout.cshtml" />
+    <Content Include="Views\Manage\ManageUsers.cshtml" />
+    <Content Include="Views\UserActions\CartPage.cshtml" />
+    <Content Include="Views\Shared\_CartNav.cshtml" />
+    <Content Include="Views\UserActions\CheckOutPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -356,7 +373,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>60736</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:44306/</IISUrl>
+          <IISUrl>http://localhost:44308/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
