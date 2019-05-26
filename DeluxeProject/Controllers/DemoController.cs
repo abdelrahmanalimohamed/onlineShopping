@@ -209,10 +209,106 @@ namespace DeluxeProject.Controllers
 
         #endregion
 
+        #region order
+        public ActionResult UpdateCart(int id , int amount )
+        {
+            var orderid = 27;
 
-# region Users
+           if(id >0)
+            {
+                var update = (from a in db.shopping_cart_details
+                              where a.item_id == id && a.order_id == orderid
+                              select a).FirstOrDefault();
+                if(update != null)
+                {
+                    update.item_amount = amount;
+                }
 
-#endregion
+                db.SaveChanges();
+
+                return Json("Update made Successfully", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("Update failed", JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult SaveOrder(string payment_type)
+        {
+            order order = new order();
+            order_details order_Details = new order_details();
+
+            var getid = (from a in db.orders
+                         select a.ID).Count();
+            if (getid == 0)
+            {
+                getid = 1;
+            }
+            else
+            {
+                getid = (from a in db.orders
+                         select a.ID).Max() + 1;
+            }
+
+
+            var totalsum = (from a in db.shopping_cart_details
+                            where getid == a.order_id
+                            select a.item_amount).Sum();
+
+            //var userid = (from a in db.users
+            //             where a.name == Session["username"].ToString() || a.name == Session["facebookusername"].ToString()
+            //             select a.ID).FirstOrDefault();
+
+            var payment_id = (from a in db.Payments
+                              where a.payment_type == payment_type
+                              select a.ID).FirstOrDefault();
+
+
+            order.date_created = DateTime.Now;
+
+            order.total_sum = double.Parse(TempData["totalprice"].ToString());
+            order.amount = totalsum;
+            //   order.user_id = userid;
+            order.payment_id = payment_id;
+            db.orders.Add(order);
+            db.SaveChanges();
+
+
+            var products = (from a in db.shopping_cart_details
+                            where a.order_id == getid
+                            join b in db.products on a.item_id equals b.ID
+                            select b).ToList();
+
+            var itemoncart = (from a in db.shopping_cart_details
+                              where getid == a.order_id
+                              select a).ToList();
+
+            foreach (var prods in products)
+            {
+                foreach (var item in itemoncart)
+                {
+                    order_Details.order_prd_qty = item.item_amount.ToString();
+                }
+                order_Details.order_prd_name = prods.prd_name;
+                order_Details.order_prd_price = prods.price;
+                order_Details.prd_id = prods.ID;
+                var finalqty = prods.prd_quantity - int.Parse(TempData["amount"].ToString());
+                order_Details.order_date = DateTime.Now;
+                order_Details.order_id = getid;
+                db.order_details.Add(order_Details);
+                db.SaveChanges();
+
+            }
+
+            return Json("Order Made Correctly", JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+
+
+        #region Users
+
+        #endregion
 
 
     }

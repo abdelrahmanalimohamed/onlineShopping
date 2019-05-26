@@ -340,6 +340,7 @@
     <Content Include="Views\UserActions\CartPage.cshtml" />
     <Content Include="Views\Shared\_CartNav.cshtml" />
     <Content Include="Views\UserActions\CheckOutPage.cshtml" />
+    <Content Include="Views\UserActions\LoginPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

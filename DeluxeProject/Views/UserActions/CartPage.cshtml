@@ -158,7 +158,7 @@
                 <!-- Shopping Cart table -->
                 <div class="table-responsive">
 
-                    <table class="table product-table">
+                    <table class="table product-table" id="productcontent">
 
                         <!-- Table head -->
                         <thead>
@@ -174,6 +174,10 @@
                                 </th>
                                 <th class="font-weight-bold">
                                     <strong>QTY</strong>
+                                </th>
+
+                                <th class="font-weight-bold">
+                                    <strong>Change Qty</strong>
                                 </th>
 
                                 <th class="font-weight-bold">
@@ -193,9 +197,13 @@
                             @foreach (var item in Model)
                             {
                             <tr>
+                                <td hidden>
+                                    @item.ID
+                                </td>
                                 <th scope="row">
                                     <img src="~/App_File/Images/@item.prd_img" alt="" class="img-fluid z-depth-0">
                                 </th>
+
                                 <td>
                                     <h5 class="mt-3">
                                         <strong>@item.prd_name</strong>
@@ -206,23 +214,28 @@
 
                                 <td></td>
                                 <td>@item.price</td>
-                                @foreach (var i in ViewBag.amount_)
-                                {
+                               
                                     <td class="text-center text-md-left">
-                                        <span class="qty">@i</span>
-                                        <div class="btn-group radio-group ml-2" data-toggle="buttons">
-                                            <label class="btn btn-sm btn-primary btn-rounded">
-                                                <input type="radio" name="options" id="option1">&mdash;
-                                            </label>
-                                            <label class="btn btn-sm btn-primary btn-rounded">
-                                                <input type="radio" name="options" id="option2">+
-                                            </label>
-                                        </div>
+                                        <span class="qty" id="spanamnt">1</span>
                                     </td>
-                                }
+                                
+
+                                <td>
+
+
+                                    <div class="btn-group radio-group ml-2" data-toggle="buttons">
+                                        <label class="btn btn-sm btn-primary btn-rounded_" id="substring">
+                                            <input type="radio" name="options" id="option1">&mdash;
+                                        </label>
+                                        <label class="btn btn-sm btn-primary btn-rounded" id="increment">
+                                            <input type="radio" name="options" id="option2">+
+                                        </label>
+                                    </div>
+
+                                </td>
 
                                 <td class="font-weight-bold">
-                                    <strong>$800</strong>
+                                    <strong></strong>
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Remove item">
@@ -230,6 +243,7 @@
                                     </button>
                                 </td>
                             </tr>
+                                
                             }
 
                             <tr>
@@ -245,17 +259,17 @@
                                     </h4>
                                 </td>
                                 <td colspan="3" class="text-right">
-                                    <button type="button" class="btn btn-primary btn-rounded">
+                                    <a class="btn btn-primary btn-rounded" id="btncomplete" >
                                         Complete purchase
                                         <i class="fas fa-angle-right right"></i>
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
 
                         </tbody>
                     </table>
                 </div>
-              
+
 
             </section>
 
@@ -265,5 +279,103 @@
     <script type="text/javascript" src="~/Content/Cart/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="~/Content/Cart/mdb.min.js"></script>
     <script type="text/javascript" src="~/Content/Cart/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
+    <script type="text/javascript">
+       
+
+        $(document).ready(function () {
+
+            $("#productcontent .btn-rounded").click(function () {
+               
+                var id = $(this).closest("tr").find("td").eq(4).text();
+                var number = parseInt(id);
+                var lbl = number + 1;
+                $(this).closest("tr").find("td").eq(4).text(lbl);
+                var price = $(this).closest("tr").find("td").eq(3).text()
+                var finalprice = price * lbl;
+                $(this).closest("tr").find("td").eq(6).text(finalprice)
+
+                var itemid = $(this).closest("tr").find("td").eq(0).html();
+                var parameters = { "id": itemid, "amount": lbl }
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Demo/UpdateCart",
+                    data: JSON.stringify(parameters),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    success: function (response) {
+                      
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+              
+            });
+
+
+            $("#productcontent  .btn-rounded_").click(function () {
+                var id = $(this).closest("tr").find("td").eq(4).text();
+                var number = parseInt(id);
+                var lbl = number - 1;
+                $(this).closest("tr").find("td").eq(4).text(lbl);
+                var price = $(this).closest("tr").find("td").eq(3).text()
+                var finalprice = price * lbl;
+                $(this).closest("tr").find("td").eq(6).text(finalprice)
+
+                var itemid = $(this).closest("tr").find("td").eq(0).html();
+                var parameters = { "id": itemid, "amount": lbl }
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Demo/UpdateCart",
+                    data: JSON.stringify(parameters),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    success: function (response) {
+
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+
+            });
+
+    //    btncomplete
+    //        $("#btncomplete").click(function () {
+    //            var id = $(this).closest("tr").find("td").eq(0).html();
+    //            var finaldata = { "id": id };
+              
+    //                $.ajax({
+    //                    url: "/Demo/DeleteSupplier",
+    //                    type: "POST",
+    //                    data: JSON.stringify(finaldata),
+    //                    dataType: "json",
+    //                    contentType: "application/json",
+    //                    success: function (response) {
+    //                        alert(response);
+    //                        location.reload();
+
+    //                    },
+    //                    error: function (e) {
+    //                        alert("an error has occured" + e);
+    //                    }
+                        
+    //                });
+                
+           
+
+    });
+    </script>
 </body>
 </html>

@@ -11,8 +11,7 @@ namespace DeluxeModel
 {
     using System;
     using System.Collections.Generic;
-    using System.Web;
-
+    
     public partial class product
     {
         public int ID { get; set; }
@@ -24,9 +23,7 @@ namespace DeluxeModel
         public Nullable<int> Categ_id { get; set; }
         public Nullable<int> supplier_id { get; set; }
         public Nullable<int> brnd_id { get; set; }
-
-        public HttpPostedFileBase fileupload { get; set; }
-
+    
         public virtual Brand Brand { get; set; }
         public virtual Category Category { get; set; }
         public virtual supplier supplier { get; set; }
